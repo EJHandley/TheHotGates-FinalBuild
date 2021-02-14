@@ -7,7 +7,10 @@ public class BoltMissile : MonoBehaviour
     public float speed = 100f;
 
     public GameObject impactEffect;
-    
+    public GameObject enemy;
+
+    public string enemyTag = "Enemy";
+
     public void Seek(Transform _target)
     {
         target = _target;
@@ -15,6 +18,8 @@ public class BoltMissile : MonoBehaviour
 
     void Update()
     {
+        enemy = GameObject.FindGameObjectWithTag(enemyTag);
+
         if (target == null)
         {
             Destroy(gameObject);
@@ -39,6 +44,8 @@ public class BoltMissile : MonoBehaviour
         GameObject bloodSpatter = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(bloodSpatter, 2f);
         Destroy(gameObject);
+        Destroy(target.gameObject);
+
         return;
     }
 }

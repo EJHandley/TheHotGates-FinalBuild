@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -17,8 +18,12 @@ public class WaveSpawner : MonoBehaviour
     public Wave[] waves;
     private int nextWave = 0;
 
+    public Transform[] spawnPoints;
+
     public float timeBetweenWaves = 5f;
     public float waveCountdown;
+
+    public TMP_Text waveCountdownText;
 
     private float enemyCheck = 1f;
 
@@ -26,6 +31,11 @@ public class WaveSpawner : MonoBehaviour
 
     void Start()
     {
+        if (spawnPoints.Length == 0)
+        {
+            Debug.Log("No Spawn Points");
+        }
+
         waveCountdown = timeBetweenWaves;
     }
 
@@ -35,7 +45,7 @@ public class WaveSpawner : MonoBehaviour
         {
             if(!EnemyIsAlive())
             {
-                Debug.Log("Wave Completed");
+                WaveCompleted();
             }
             else
             {
@@ -53,6 +63,26 @@ public class WaveSpawner : MonoBehaviour
         else
         {
             waveCountdown -= Time.deltaTime;
+        }
+
+        waveCountdownText.text = Mathf.Round(waveCountdown).ToString();
+    }
+
+    public void WaveCompleted()
+    {
+        Debug.Log("Wave Completed!");
+
+        state = SpawnState.COUNTING;
+        waveCountdown = timeBetweenWaves;
+
+        if(nextWave + 1 > waves.Length - 1)
+        {
+            nextWave = 0;
+            Debug.Log("Level Complete");
+        }
+        else
+        {
+            nextWave++;
         }
     }
 
@@ -89,7 +119,9 @@ public class WaveSpawner : MonoBehaviour
     public void SpawnEnemy(Transform _enemy)
     {
         Debug.Log("SPAWNING ENEMY");
-        Instantiate(_enemy, transform.position, transform.rotation);
-    }
 
+        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(_enemy, _sp.position, _sp.rotation);
+        
+    }
 }

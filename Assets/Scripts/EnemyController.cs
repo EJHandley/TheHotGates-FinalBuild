@@ -24,4 +24,9 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
+
+    public void TakeDamage()
+    {
+        Destroy(gameObject);
+    }
 }
