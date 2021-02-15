@@ -2,6 +2,10 @@
 
 public class Shop : MonoBehaviour
 {
+
+    public TurretBlueprint ballista;
+    public TurretBlueprint catapult;
+
     BuildManager buildManager;
 
     private void Start()
@@ -9,14 +13,14 @@ public class Shop : MonoBehaviour
         buildManager = BuildManager.instance;
     }
 
-    public void PurchaseBallista()
+    public void SelectBallista()
     {
-        buildManager.SetTurretToBuild(buildManager.standardTurretPrefab);
+        buildManager.SelectTurretToBuild(ballista);
     }
 
-    public void PurchaseCatapult()
+    public void SelectCatapult()
     {
-        buildManager.SetTurretToBuild(buildManager.secondTurretPrefab);
+        buildManager.SelectTurretToBuild(catapult);
     }
 
     public void PurchaseSpartan()
