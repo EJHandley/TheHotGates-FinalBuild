@@ -10,6 +10,7 @@ public class StoneMissile : MonoBehaviour
     public GameObject enemy;
 
     public float explosionRadius = 0f;
+    public int damage = 100;
 
     public string enemyTag = "Enemy";
 
@@ -51,12 +52,6 @@ public class StoneMissile : MonoBehaviour
         {
             Explode();
         }
-        else
-        {
-            Damage(target);
-        }
-
-        Destroy(gameObject);
 
         return;
     }
@@ -74,8 +69,13 @@ public class StoneMissile : MonoBehaviour
     }
 
     void Damage (Transform enemy)
-    { 
-        Destroy(enemy.gameObject);
+    {
+        EnemyController e = enemy.GetComponent<EnemyController>();
+
+        if (e != null)
+        {
+            e.TakeDamage(damage);
+        }
     }
 
     private void OnDrawGizmosSelected()

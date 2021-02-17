@@ -5,6 +5,7 @@ public class BoltMissile : MonoBehaviour
     private Transform target;
 
     public float speed = 100f;
+    public int damage = 50;
 
     public GameObject impactEffect;
     public GameObject enemy;
@@ -43,9 +44,20 @@ public class BoltMissile : MonoBehaviour
     {
         GameObject bloodSpatter = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(bloodSpatter, 2f);
+
         Destroy(gameObject);
-        Destroy(target.gameObject);
+        Damage(target.transform);
 
         return;
+    }
+
+    void Damage(Transform enemy)
+    {
+        EnemyController e = enemy.GetComponent<EnemyController>();
+
+        if(e != null)
+        {
+            e.TakeDamage(damage);
+        }
     }
 }
