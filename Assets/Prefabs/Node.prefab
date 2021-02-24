@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 0}
   turret: {fileID: 0}
-  positionOffset: {x: 0, y: 0, z: 0}
+  positionOffset: {x: 0, y: 2, z: 0}
 --- !u!208 &-253395480245523692
 NavMeshObstacle:
   m_ObjectHideFlags: 0

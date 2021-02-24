@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     public float objectiveRadius = 1f;
 
     public int health = 100;
+    public int value = 10;
 
     Transform target;
     NavMeshAgent agent;
@@ -41,6 +42,7 @@ public class EnemyController : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        PlayerStats.Money += value;
     }
 
     public void ObjectiveReached()

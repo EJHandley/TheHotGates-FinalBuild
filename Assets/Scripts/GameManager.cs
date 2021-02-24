@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
             EndGame();
         }
 
-        if (Input.GetKeyDown("Escape"))
+        if (Input.GetKeyDown("Cancel"))
         {
             Application.Quit();
         }

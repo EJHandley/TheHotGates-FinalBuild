@@ -9,7 +9,6 @@ public class CatapultController : MonoBehaviour
     public float fireRate = 1f;
     private float reloadTime = 1f;
 
-
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
     public Transform turnPoint;
