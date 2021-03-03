@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 
-public class BoltMissile : MonoBehaviour
+public class StoneMissile : MonoBehaviour
 {
     private Transform target;
 
     public float speed = 100f;
-    public int damage = 50;
 
     public GameObject impactEffect;
     public GameObject enemy;
+
+    public float explosionRadius = 0f;
+    public int damage = 100;
 
     public string enemyTag = "Enemy";
 
@@ -30,13 +32,14 @@ public class BoltMissile : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
-        if(dir.magnitude <= distanceThisFrame)
+        if (dir.magnitude <= distanceThisFrame)
         {
             HitTarget();
             return;
         }
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+        transform.LookAt(target);
 
     }
 
@@ -45,19 +48,39 @@ public class BoltMissile : MonoBehaviour
         GameObject bloodSpatter = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(bloodSpatter, 2f);
 
-        Destroy(gameObject);
-        Damage(target.transform);
+        if(explosionRadius > 0f)
+        {
+            Explode();
+        }
 
         return;
     }
 
-    void Damage(Transform enemy)
+    void Explode ()
     {
-        EnemyController e = enemy.GetComponent<EnemyController>();
+        Collider [] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        foreach (Collider collider in colliders)
+        {
+            if(collider.tag == "Enemy")
+            {
+                Damage(collider.transform);
+            }
+        }
+    }
 
-        if(e != null)
+    void Damage (Transform enemy)
+    {
+        EnemyHealth e = enemy.GetComponent<EnemyHealth>();
+
+        if (e != null)
         {
             e.TakeDamage(damage);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

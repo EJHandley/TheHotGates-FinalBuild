@@ -13,6 +13,12 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.GameIsOver)
+        {
+            this.enabled = false;
+            return;
+        }
+
         //Camera Panning
 
         float mouseY = Input.mousePosition.y;

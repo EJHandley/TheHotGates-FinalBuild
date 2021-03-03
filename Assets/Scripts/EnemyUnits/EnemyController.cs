@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
     public float lookRadius = 10f;
     public float objectiveRadius = 1f;
 
-    public int health = 100;
     public int value = 10;
 
     Transform target;
     NavMeshAgent agent;
+
+    [Header("Unity Parameters")]
+    public Image healthBar;
 
     void Start()
     {
@@ -27,22 +30,6 @@ public class EnemyController : MonoBehaviour
         {
             ObjectiveReached();
         }
-    }
-
-    public void TakeDamage(int amount)
-    {
-        health -= amount;
-
-        if(health <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        Destroy(gameObject);
-        PlayerStats.Money += value;
     }
 
     public void ObjectiveReached()

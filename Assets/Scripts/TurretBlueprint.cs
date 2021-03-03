@@ -7,6 +7,7 @@ public class TurretBlueprint
 {
 
     public GameObject prefab;
-    public int cost;
+    public int purchaseValue;
+    public int sellValue;
 
 }

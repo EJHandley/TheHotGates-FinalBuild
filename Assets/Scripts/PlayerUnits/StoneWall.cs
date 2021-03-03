@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 
-public class Wall : MonoBehaviour
+public class StoneWall : MonoBehaviour
 {
 
-    public int health = 100;
+    public TurretStats stats;
 
     void Start()
     {
        
     }
 
-    // Update is called once per frame
     void Update()
     {
         

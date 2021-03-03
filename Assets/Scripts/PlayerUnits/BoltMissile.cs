@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 
-public class StoneMissile : MonoBehaviour
+public class BoltMissile : MonoBehaviour
 {
     private Transform target;
 
     public float speed = 100f;
+    public int damage = 50;
 
     public GameObject impactEffect;
     public GameObject enemy;
-
-    public float explosionRadius = 0f;
-    public int damage = 100;
 
     public string enemyTag = "Enemy";
 
@@ -32,14 +30,13 @@ public class StoneMissile : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
-        if (dir.magnitude <= distanceThisFrame)
+        if(dir.magnitude <= distanceThisFrame)
         {
             HitTarget();
             return;
         }
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-        transform.LookAt(target);
 
     }
 
@@ -48,39 +45,19 @@ public class StoneMissile : MonoBehaviour
         GameObject bloodSpatter = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(bloodSpatter, 2f);
 
-        if(explosionRadius > 0f)
-        {
-            Explode();
-        }
+        Destroy(gameObject);
+        Damage(target.transform);
 
         return;
     }
 
-    void Explode ()
+    void Damage(Transform enemy)
     {
-        Collider [] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        foreach (Collider collider in colliders)
-        {
-            if(collider.tag == "Enemy")
-            {
-                Damage(collider.transform);
-            }
-        }
-    }
-
-    void Damage (Transform enemy)
-    {
-        EnemyController e = enemy.GetComponent<EnemyController>();
+        EnemyHealth e = enemy.GetComponent<EnemyHealth>();
 
         if (e != null)
         {
             e.TakeDamage(damage);
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }
