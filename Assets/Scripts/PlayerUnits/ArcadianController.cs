@@ -67,7 +67,7 @@ public class ArcadianController : MonoBehaviour
 
     void Damage(Transform enemy)
     {
-        EnemyHealth e = enemy.GetComponent<EnemyHealth>();
+        EnemyController e = enemy.GetComponent<EnemyController>();
 
         if (e != null)
         {

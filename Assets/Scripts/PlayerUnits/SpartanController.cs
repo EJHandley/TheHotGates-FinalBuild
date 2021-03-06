@@ -8,7 +8,6 @@ public class SpartanController : MonoBehaviour
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
 
-    // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -66,7 +65,7 @@ public class SpartanController : MonoBehaviour
 
     void Damage(Transform enemy)
     {
-        EnemyHealth e = enemy.GetComponent<EnemyHealth>();
+        EnemyController e = enemy.GetComponent<EnemyController>();
 
         if (e != null)
         {

@@ -1,17 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class TurretStats
 {
-
+    [Header("For All Units")]
     public int startHealth;
     public int health;
     public int damage;
+    public GameObject impactEffect;
+    [Header("For All Attacking Units")]
     public float attackRange;
     public float attackSpeed;
     public float attackReset;
-    public GameObject impactEffect;
-
+    [Header("For Turrets")]
+    public GameObject missilePrefab;
+    public float missileSpeed;
+    public Transform firePoint;
+    public Transform rotationPoint;
+    public float turnSpeed;
+    [Header("For Catapults and Stone Wall")]
+    public float explosionRadius;
 }

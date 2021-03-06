@@ -10,9 +10,15 @@ public class WaveSpawner : MonoBehaviour
     public class Wave
     {
         public string name;
-        public Transform enemy;
-        public int count;
-        public float rate;
+        public float spawnRate;
+        public WaveGroup[] enemies;
+
+        [System.Serializable]
+        public class WaveGroup
+        {
+            public Transform enemy;
+            public int count;
+        }
     }
 
     public Wave[] waves;
@@ -28,6 +34,8 @@ public class WaveSpawner : MonoBehaviour
     private float enemyCheck = 1f;
 
     private SpawnState state = SpawnState.COUNTING;
+
+    public GameManager gameManager;
 
     void Start()
     {
@@ -78,7 +86,8 @@ public class WaveSpawner : MonoBehaviour
         if(nextWave + 1 > waves.Length - 1)
         {
             nextWave = 0;
-            Debug.Log("Level Complete");
+            this.enabled = false;
+            gameManager.WinLevel();
         }
         else
         {
@@ -105,10 +114,13 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("SPAWNING WAVE");
         state = SpawnState.SPAWNING;
 
-        for (int i = 0; i < _wave.count; i++)
+        for (int z = 0; z < _wave.enemies.Length; z++)
         {
-            SpawnEnemy(_wave.enemy);
-            yield return new WaitForSeconds(1f / _wave.rate);
+            for (int i = 0; i < _wave.enemies[z].count; i++)
+            {
+                SpawnEnemy(_wave.enemies[z].enemy);
+                yield return new WaitForSeconds(1f / _wave.spawnRate);
+            }
         }
 
         state = SpawnState.WAITING;

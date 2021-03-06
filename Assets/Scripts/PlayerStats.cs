@@ -28,8 +28,8 @@ public class PlayerStats : MonoBehaviour
 
     public void Update()
     {
-        currencyCounterText.text = Mathf.Round(NormalCurrency) + " Monies";
-        livesText.text = Mathf.Round(Lives) + " Lives";
+        currencyCounterText.text = Mathf.Round(NormalCurrency) + "";
+        livesText.text = Mathf.Round(Lives) + "";
     }
 
 }

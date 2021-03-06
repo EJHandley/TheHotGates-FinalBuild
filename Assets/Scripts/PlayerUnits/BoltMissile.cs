@@ -2,15 +2,11 @@
 
 public class BoltMissile : MonoBehaviour
 {
+    public BallistaController ballistaController;
+
     private Transform target;
 
-    public float speed = 100f;
-    public int damage = 50;
-
-    public GameObject impactEffect;
     public GameObject enemy;
-
-    public string enemyTag = "Enemy";
 
     public void Seek(Transform _target)
     {
@@ -19,7 +15,7 @@ public class BoltMissile : MonoBehaviour
 
     void Update()
     {
-        enemy = GameObject.FindGameObjectWithTag(enemyTag);
+        enemy = GameObject.FindGameObjectWithTag(ballistaController.enemyTag);
 
         if (target == null)
         {
@@ -28,7 +24,7 @@ public class BoltMissile : MonoBehaviour
         }
 
         Vector3 dir = target.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
+        float distanceThisFrame = ballistaController.stats.missileSpeed * Time.deltaTime;
 
         if(dir.magnitude <= distanceThisFrame)
         {
@@ -42,7 +38,7 @@ public class BoltMissile : MonoBehaviour
 
     void HitTarget()
     {
-        GameObject bloodSpatter = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+        GameObject bloodSpatter = (GameObject)Instantiate(ballistaController.stats.impactEffect, transform.position, transform.rotation);
         Destroy(bloodSpatter, 2f);
 
         Destroy(gameObject);
@@ -53,11 +49,11 @@ public class BoltMissile : MonoBehaviour
 
     void Damage(Transform enemy)
     {
-        EnemyHealth e = enemy.GetComponent<EnemyHealth>();
+        EnemyController e = enemy.GetComponent<EnemyController>();
 
         if (e != null)
         {
-            e.TakeDamage(damage);
+            e.TakeDamage(ballistaController.stats.damage);
         }
     }
 }

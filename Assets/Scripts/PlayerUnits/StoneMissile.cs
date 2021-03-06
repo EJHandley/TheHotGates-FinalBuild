@@ -2,17 +2,11 @@
 
 public class StoneMissile : MonoBehaviour
 {
+    public CatapultController catapultController;
+
     private Transform target;
 
-    public float speed = 100f;
-
-    public GameObject impactEffect;
     public GameObject enemy;
-
-    public float explosionRadius = 0f;
-    public int damage = 100;
-
-    public string enemyTag = "Enemy";
 
     public void Seek(Transform _target)
     {
@@ -21,7 +15,7 @@ public class StoneMissile : MonoBehaviour
 
     void Update()
     {
-        enemy = GameObject.FindGameObjectWithTag(enemyTag);
+        enemy = GameObject.FindGameObjectWithTag(catapultController.enemyTag);
 
         if (target == null)
         {
@@ -30,7 +24,7 @@ public class StoneMissile : MonoBehaviour
         }
 
         Vector3 dir = target.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
+        float distanceThisFrame = catapultController.stats.missileSpeed * Time.deltaTime;
 
         if (dir.magnitude <= distanceThisFrame)
         {
@@ -45,10 +39,10 @@ public class StoneMissile : MonoBehaviour
 
     void HitTarget()
     {
-        GameObject bloodSpatter = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+        GameObject bloodSpatter = (GameObject)Instantiate(catapultController.stats.impactEffect, transform.position, transform.rotation);
         Destroy(bloodSpatter, 2f);
 
-        if(explosionRadius > 0f)
+        if(catapultController.stats.explosionRadius > 0f)
         {
             Explode();
         }
@@ -58,7 +52,7 @@ public class StoneMissile : MonoBehaviour
 
     void Explode ()
     {
-        Collider [] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        Collider [] colliders = Physics.OverlapSphere(transform.position, catapultController.stats.explosionRadius);
         foreach (Collider collider in colliders)
         {
             if(collider.tag == "Enemy")
@@ -70,17 +64,17 @@ public class StoneMissile : MonoBehaviour
 
     void Damage (Transform enemy)
     {
-        EnemyHealth e = enemy.GetComponent<EnemyHealth>();
+        EnemyController e = enemy.GetComponent<EnemyController>();
 
         if (e != null)
         {
-            e.TakeDamage(damage);
+            e.TakeDamage(catapultController.stats.damage);
         }
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        Gizmos.DrawWireSphere(transform.position, catapultController.stats.explosionRadius);
     }
 }
