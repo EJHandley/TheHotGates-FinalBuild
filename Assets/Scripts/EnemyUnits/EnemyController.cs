@@ -32,6 +32,8 @@ public class EnemyController : MonoBehaviour
         {
             ObjectiveReached();
         }
+
+        PlayerStats.SpecialCurrency = PlayerPrefs.GetInt("SpecialCurrency");
     }
 
     public void ObjectiveReached()
@@ -58,6 +60,7 @@ public class EnemyController : MonoBehaviour
 
         PlayerStats.NormalCurrency += stats.normalValue;
         PlayerStats.SpecialCurrency += stats.specialValue;
+        PlayerPrefs.SetInt("SpecialCurrency", PlayerPrefs.GetInt("SpecialCurrency") + stats.specialValue);
         PlayerStats.EnemiesKilled++;
 
         Destroy(gameObject);

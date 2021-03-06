@@ -235,13 +235,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9201770e993a1de46bd69e2b94071c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 30
-  fireRate: 0.5
+  stats:
+    startHealth: 100
+    health: 0
+    damage: 50
+    impactEffect: {fileID: 6943342320996205493, guid: edcc2f42a0679424bbb8a86fb68b4069, type: 3}
+    attackRange: 100
+    attackSpeed: 75
+    attackReset: 10
+    missilePrefab: {fileID: 112581250258661446, guid: fb96af87850b9a54bb85c9eb59af8e2e, type: 3}
+    missileSpeed: 50
+    firePoint: {fileID: 1809857767334610519}
+    rotationPoint: {fileID: 9070854311215001319}
+    turnSpeed: 50
+    explosionRadius: 0
   enemyTag: Enemy
-  top: {fileID: 9070854311215001319}
-  turnSpeed: 10
-  boltPrefab: {fileID: 112581250258661446, guid: fb96af87850b9a54bb85c9eb59af8e2e, type: 3}
-  firePoint: {fileID: 1809857767334610519}
 --- !u!1 &2492984107952497574
 GameObject:
   m_ObjectHideFlags: 0
