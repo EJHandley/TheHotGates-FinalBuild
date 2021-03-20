@@ -8,10 +8,21 @@ public class ArcherController : MonoBehaviour
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
 
-    // Start is called before the first frame update
+    private int skiritaiDamageChange;
+    private float skiritaiRangeChange;
+
+    private int peltastDamageChange;
+    private float peltastRangeChange;
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
+        skiritaiDamageChange = stats.damage / 20;
+        skiritaiRangeChange = stats.attackRange / 20;
+
+        peltastDamageChange = stats.damage / 40;
+        peltastRangeChange = stats.attackRange / 10;
     }
 
     void UpdateTarget()
@@ -42,10 +53,15 @@ public class ArcherController : MonoBehaviour
 
     void Update()
     {
-        if (target == null)
+        if(target == null)
         {
             return;
         }
+
+        Vector3 dir = (target.position - transform.position);
+        Quaternion aimRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(stats.rotationPoint.rotation, aimRotation, Time.deltaTime * stats.turnSpeed).eulerAngles;
+        stats.rotationPoint.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
         if (stats.attackReset <= 0f)
         {
@@ -54,13 +70,25 @@ public class ArcherController : MonoBehaviour
         }
 
         stats.attackReset -= Time.deltaTime;
+
+        if(!UpgradeSystem.SkiritaiIsEnabled && !UpgradeSystem.PeltastIsEnabled)
+        {
+            return;
+        }
+
+        if(UpgradeSystem.SkiritaiIsEnabled)
+        {
+            SkiritaiUpgradeEnabled();
+        }
+
+        if(UpgradeSystem.PeltastIsEnabled)
+        {
+            PeltastUpgradeEnabled();
+        }
     }
 
     void Attack()
     {
-        GameObject bloodSpatter = (GameObject)Instantiate(stats.impactEffect, transform.position, transform.rotation);
-        Destroy(bloodSpatter, 2f);
-
         Damage(target.transform);
     }
 
@@ -72,6 +100,18 @@ public class ArcherController : MonoBehaviour
         {
             e.TakeDamage(stats.damage);
         }
+    }
+
+    void SkiritaiUpgradeEnabled()
+    {
+        stats.damage += skiritaiDamageChange;
+        stats.attackRange += skiritaiRangeChange;
+    }
+
+    void PeltastUpgradeEnabled()
+    {
+        stats.damage += peltastDamageChange;
+        stats.attackRange -= peltastRangeChange;
     }
 
     void OnDrawGizmosSelected()

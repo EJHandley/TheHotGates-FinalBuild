@@ -4,6 +4,7 @@
 public class TurretStats
 {
     [Header("For All Units")]
+    public int value;
     public int startHealth;
     public int health;
     public int damage;

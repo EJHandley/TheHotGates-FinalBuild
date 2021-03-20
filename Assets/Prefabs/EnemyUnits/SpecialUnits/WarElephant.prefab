@@ -142,6 +142,7 @@ MonoBehaviour:
     attackSpeed: 10
     attackReset: 10
     reachedObjective: 5
+  turretTag: Turret
   healthBar: {fileID: 5770118422466803552}
 --- !u!1 &5944971321585287036
 GameObject:

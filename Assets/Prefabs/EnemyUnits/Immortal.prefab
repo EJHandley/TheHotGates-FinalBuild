@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4422526540504661596}
   - component: {fileID: 3048144980593643711}
   m_Layer: 0
-  m_Name: PersianCavalry
+  m_Name: Immortal
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,6 +142,7 @@ MonoBehaviour:
     attackSpeed: 0
     attackReset: 0
     reachedObjective: 0
+  turretTag: Turret
   healthBar: {fileID: 5770118422466803552}
 --- !u!1 &5944971321585287036
 GameObject:

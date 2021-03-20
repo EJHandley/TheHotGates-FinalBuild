@@ -8,9 +8,18 @@ public class SpartanController : MonoBehaviour
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
 
+    private int agogeDamageChange;
+    private int agogeHealthChange;
+
+    private int forSpartaPassiveChange;
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
+        agogeDamageChange = stats.damage / 20;
+        agogeHealthChange = stats.health / 20;
+
     }
 
     void UpdateTarget()
@@ -53,13 +62,25 @@ public class SpartanController : MonoBehaviour
         }
 
         stats.attackReset -= Time.deltaTime;
+
+        if(!UpgradeSystem.AgogeIsEnabled && !UpgradeSystem.SpartaIsEnabled)
+        {
+            return;
+        }
+
+        if(UpgradeSystem.AgogeIsEnabled)
+        {
+            AgogeUpgradeEnabled();
+        }
+
+        if(UpgradeSystem.SpartaIsEnabled)
+        {
+            ForSpartaUpgradeEnabled();
+        }
     }
 
     void Attack()
     {
-        GameObject bloodSpatter = (GameObject)Instantiate(stats.impactEffect, transform.position, transform.rotation);
-        Destroy(bloodSpatter, 2f);
-
         Damage(target.transform);
     }
 
@@ -71,6 +92,17 @@ public class SpartanController : MonoBehaviour
         {
             e.TakeDamage(stats.damage);
         }
+    }
+
+    void AgogeUpgradeEnabled()
+    {
+        stats.damage += agogeDamageChange;
+        stats.health += agogeHealthChange;
+    }
+
+    void ForSpartaUpgradeEnabled()
+    {
+        //DO SOMETHING
     }
 
     void OnDrawGizmosSelected()

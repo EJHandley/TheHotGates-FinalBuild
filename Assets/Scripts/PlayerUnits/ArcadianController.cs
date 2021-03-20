@@ -10,9 +10,21 @@ public class ArcadianController : MonoBehaviour
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
 
+    private int arcadianHealthChange;
+    private int arcadianValueChange;
+
+    private int wrathDamageChange;
+    private float wrathAttackSpeedChange;
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
+        arcadianHealthChange = stats.health / 10;
+        arcadianValueChange = stats.value / 50;
+
+        wrathDamageChange = stats.damage / 10;
+        wrathAttackSpeedChange = stats.attackSpeed;
     }
 
     void UpdateTarget()
@@ -55,13 +67,25 @@ public class ArcadianController : MonoBehaviour
         }
 
         stats.attackReset -= Time.deltaTime;
+
+        if(!UpgradeSystem.ArcadianIsEnabled && !UpgradeSystem.WrathIsEnabled)
+        {
+            return;
+        }
+
+        if(UpgradeSystem.ArcadianIsEnabled)
+        {
+            ArcadianUpgradeEnabled();
+        }
+
+        if(UpgradeSystem.WrathIsEnabled)
+        {
+            WrathUpgradeEnabled();
+        }
     }
 
     void Attack()
     {
-        GameObject bloodSpatter = (GameObject)Instantiate(stats.impactEffect, transform.position, transform.rotation);
-        Destroy(bloodSpatter, 2f);
-
         Damage(target.transform);
     }
 
@@ -73,6 +97,18 @@ public class ArcadianController : MonoBehaviour
         {
             e.TakeDamage(stats.damage);
         }
+    }
+
+    void ArcadianUpgradeEnabled()
+    {
+        stats.health += arcadianHealthChange;
+        stats.value += arcadianValueChange;
+    }
+
+    void WrathUpgradeEnabled()
+    {
+        stats.damage += wrathDamageChange;
+        stats.attackSpeed += wrathAttackSpeedChange;
     }
 
     void OnDrawGizmosSelected()

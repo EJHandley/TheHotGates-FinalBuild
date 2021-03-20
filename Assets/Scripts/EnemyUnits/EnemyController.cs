@@ -4,9 +4,7 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-
-    Transform target;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     public EnemyStats stats;
 
@@ -19,27 +17,35 @@ public class EnemyController : MonoBehaviour
     {
         stats.health = stats.startHealth;
 
-        target = EnemyObjective.instance.enemyObjective.transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
+        PlayerStats.SpecialCurrency = PlayerPrefs.GetInt("SpecialCurrency");
+    }
+
+    public void GoToObjective()
+    {
+        Transform target = EnemyObjective.instance.enemyObjective.transform;
         agent.SetDestination(target.position);
 
         float distanceToObjective = Vector3.Distance(transform.position, target.position);
-        if(distanceToObjective <= stats.reachedObjective)
+        if (distanceToObjective <= stats.reachedObjective)
         {
             ObjectiveReached();
         }
-
-        PlayerStats.SpecialCurrency = PlayerPrefs.GetInt("SpecialCurrency");
     }
 
     public void ObjectiveReached()
     {
         PlayerStats.Lives--;
         Destroy(gameObject);
+    }
+
+    public void Attack()
+    {
+
     }
 
     public void TakeDamage(int amount)

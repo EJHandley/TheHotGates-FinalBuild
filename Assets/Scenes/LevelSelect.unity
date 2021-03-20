@@ -13309,6 +13309,18 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 780816836125090635, guid: 84090b3655669394ab786ee2a5a79e3f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 597653688}
+    - target: {fileID: 780816836125090635, guid: 84090b3655669394ab786ee2a5a79e3f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Select
+      objectReference: {fileID: 0}
+    - target: {fileID: 780816836125090635, guid: 84090b3655669394ab786ee2a5a79e3f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level02
+      objectReference: {fileID: 0}
     - target: {fileID: 780816836125090637, guid: 84090b3655669394ab786ee2a5a79e3f, type: 3}
       propertyPath: m_Name
       value: LevelButton (1)
@@ -16029,7 +16041,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Health Increased by 10%
 
-    Unit Cost Reduced'
+    Unit Cost Reduced by 50%'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21029,7 +21041,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -157.3}
+  m_AnchoredPosition: {x: 2, y: -147.5}
   m_SizeDelta: {x: 186.07684, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1725790934
@@ -21080,8 +21092,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13
-  m_fontSizeBase: 13
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -25906,6 +25918,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 597653688}
+    - target: {fileID: 780816836125090635, guid: 84090b3655669394ab786ee2a5a79e3f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level01
+      objectReference: {fileID: 0}
     - target: {fileID: 780816836125090637, guid: 84090b3655669394ab786ee2a5a79e3f, type: 3}
       propertyPath: m_Name
       value: LevelButton

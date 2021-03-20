@@ -8,9 +8,19 @@ public class CatapultController : MonoBehaviour
 
     private Transform target;
 
+    private float greekFireAOEChange;
+
+    private int artilleryDamageChange;
+    private float artilleryAOEChange;
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
+        greekFireAOEChange = stats.explosionRadius / 20;
+
+        artilleryDamageChange = stats.damage / 50;
+        artilleryAOEChange = stats.explosionRadius / 50;
     }
 
     void UpdateTarget()
@@ -59,6 +69,21 @@ public class CatapultController : MonoBehaviour
         }
 
         stats.attackReset -= Time.deltaTime;
+
+        if(!UpgradeSystem.GreekFireIsEnabled && !UpgradeSystem.ArtilleryIsEnabled)
+        {
+            return;
+        }
+
+        if(UpgradeSystem.GreekFireIsEnabled)
+        {
+            GreekFireUpgradeEnabled();
+        }
+
+        if(UpgradeSystem.ArtilleryIsEnabled)
+        {
+            ArtilleryUpgradeEnabled();
+        }
     }
 
     void Shoot()
@@ -70,6 +95,18 @@ public class CatapultController : MonoBehaviour
         {
             projectile.Seek(target);
         }
+    }
+
+    void GreekFireUpgradeEnabled()
+    {
+        stats.explosionRadius += greekFireAOEChange;
+        //DO SOMETHING
+    }
+
+    void ArtilleryUpgradeEnabled()
+    {
+        stats.damage += artilleryDamageChange;
+        stats.explosionRadius -= artilleryAOEChange;
     }
 
     void OnDrawGizmosSelected()

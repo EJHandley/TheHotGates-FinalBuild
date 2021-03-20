@@ -8,9 +8,15 @@ public class BallistaController : MonoBehaviour
 
     private Transform target;
 
+    private float springsRangeUpgrade;
+    private float springsSpeedUpgrade;
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
+        springsRangeUpgrade = stats.attackRange / 5;
+        springsSpeedUpgrade = stats.attackSpeed / 5;
     }
 
     void UpdateTarget()
@@ -38,27 +44,41 @@ public class BallistaController : MonoBehaviour
             target = null;
         }
     }
-       
+
     void Update()
     {
-        if(target == null)
+        if (target == null)
         {
             return;
         }
 
-        // Ballista Aiming
         Vector3 dir = (target.position - transform.position);
         Quaternion aimRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(stats.rotationPoint.rotation, aimRotation, Time.deltaTime * stats.turnSpeed).eulerAngles;
         stats.rotationPoint.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-        
-        if(stats.attackReset <= 0f)
+
+        if (stats.attackReset <= 0f)
         {
             Shoot();
             stats.attackReset = 1f / stats.attackSpeed;
         }
 
         stats.attackReset -= Time.deltaTime;
+
+        if (!UpgradeSystem.SpringsIsEnabled && !UpgradeSystem.JointIsEnabled)
+        {
+            return;
+        }
+
+        if (UpgradeSystem.SpringsIsEnabled)
+        {
+            SpringsUpgradeEnabled();
+        }
+
+        if (UpgradeSystem.JointIsEnabled)
+        {
+            JointUpgradeEnabled();
+        }
     }
 
     void Shoot()
@@ -70,6 +90,17 @@ public class BallistaController : MonoBehaviour
         {
             bolt.Seek(target);
         }
+    }
+
+    void SpringsUpgradeEnabled()
+    {
+        stats.attackRange += springsRangeUpgrade;
+        stats.attackSpeed += springsSpeedUpgrade;
+    }
+
+    void JointUpgradeEnabled()
+    {
+        //DO SOMETHING
     }
 
     void OnDrawGizmosSelected()
