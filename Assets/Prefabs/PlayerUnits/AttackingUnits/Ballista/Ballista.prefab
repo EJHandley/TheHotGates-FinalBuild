@@ -236,14 +236,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    value: 0
+    prefab: {fileID: 0}
+    purchaseValue: 0
+    sellValue: 0
     startHealth: 100
     health: 0
     damage: 50
     impactEffect: {fileID: 6943342320996205493, guid: edcc2f42a0679424bbb8a86fb68b4069, type: 3}
-    attackRange: 100
-    attackSpeed: 75
-    attackReset: 10
+    attackRange: 20
+    attackSpeed: 1
+    attackReset: 1
     missilePrefab: {fileID: 112581250258661446, guid: fb96af87850b9a54bb85c9eb59af8e2e, type: 3}
     missileSpeed: 50
     firePoint: {fileID: 1809857767334610519}

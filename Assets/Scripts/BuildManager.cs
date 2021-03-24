@@ -27,11 +27,11 @@ public class BuildManager : MonoBehaviour
     public GameObject woodenWallPrefab;
     public GameObject stoneWallPrefab;
 
-    private TurretBlueprint turretToBuild;
+    private TurretStats turretToBuild;
 
     public bool CanBuild {get{return turretToBuild != null;}}
 
-    public void SelectTurretToBuild(TurretBlueprint turret)
+    public void SelectTurretToBuild(TurretStats turret)
     {
         turretToBuild = turret;
     }

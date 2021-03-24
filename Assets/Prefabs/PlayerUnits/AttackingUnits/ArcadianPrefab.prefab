@@ -48,7 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    value: 25
+    prefab: {fileID: 0}
+    purchaseValue: 30
+    sellValue: 0
     startHealth: 50
     health: 0
     damage: 10

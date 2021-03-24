@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class ArcadianController : MonoBehaviour
 {
+    private int isTrue = 1;
+    private int isFalse = 0;
 
     private Transform target;
     public TurretStats stats;
@@ -21,7 +23,7 @@ public class ArcadianController : MonoBehaviour
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
 
         arcadianHealthChange = stats.health / 10;
-        arcadianValueChange = stats.value / 50;
+        arcadianValueChange = stats.purchaseValue / 50;
 
         wrathDamageChange = stats.damage / 10;
         wrathAttackSpeedChange = stats.attackSpeed;
@@ -68,17 +70,17 @@ public class ArcadianController : MonoBehaviour
 
         stats.attackReset -= Time.deltaTime;
 
-        if(!UpgradeSystem.ArcadianIsEnabled && !UpgradeSystem.WrathIsEnabled)
+        if (PlayerPrefs.GetInt("ArcadianActivated") == isFalse && PlayerPrefs.GetInt("WrathActivated") == isFalse)
         {
             return;
         }
 
-        if(UpgradeSystem.ArcadianIsEnabled)
+        if (PlayerPrefs.GetInt("ArcadianActivated") == isTrue)
         {
             ArcadianUpgradeEnabled();
         }
 
-        if(UpgradeSystem.WrathIsEnabled)
+        if (PlayerPrefs.GetInt("WrathActivated") == isTrue)
         {
             WrathUpgradeEnabled();
         }
@@ -99,10 +101,15 @@ public class ArcadianController : MonoBehaviour
         }
     }
 
+    void ArcadianPassive()
+    {
+        
+    }
+
     void ArcadianUpgradeEnabled()
     {
         stats.health += arcadianHealthChange;
-        stats.value += arcadianValueChange;
+        stats.purchaseValue += arcadianValueChange;
     }
 
     void WrathUpgradeEnabled()

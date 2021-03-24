@@ -375,7 +375,7 @@ public class UpgradeSystem : MonoBehaviour
         if(wrathUpgradeCost <= PlayerStats.SpecialCurrency)
         {
             WrathIsEnabled = true;
-            PlayerPrefs.SetInt("WrathActivated", 1);
+            PlayerPrefs.SetInt("WrathActivated", isTrue);
             PlayerPrefs.SetInt("SpecialCurrency", PlayerPrefs.GetInt("SpecialCurrency") - wrathUpgradeCost);
         }
     }
@@ -385,7 +385,7 @@ public class UpgradeSystem : MonoBehaviour
         if (arcadianUpgradeCost <= PlayerStats.SpecialCurrency)
         {
             ArcadianIsEnabled = true;
-            PlayerPrefs.SetInt("ArcadianActivated", 1);
+            PlayerPrefs.SetInt("ArcadianActivated", isTrue);
             PlayerPrefs.SetInt("SpecialCurrency", PlayerPrefs.GetInt("SpecialCurrency") - arcadianUpgradeCost);
         }
     }

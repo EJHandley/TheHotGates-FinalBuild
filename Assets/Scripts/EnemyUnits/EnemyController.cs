@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         stats.health = stats.startHealth;
+        stats.speed = stats.startSpeed;
 
         agent = GetComponent<NavMeshAgent>();
     }
@@ -23,6 +24,8 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         PlayerStats.SpecialCurrency = PlayerPrefs.GetInt("SpecialCurrency");
+
+        stats.speed = stats.startSpeed;
     }
 
     public void GoToObjective()
@@ -46,6 +49,11 @@ public class EnemyController : MonoBehaviour
     public void Attack()
     {
 
+    }
+
+    public void Slow(float pct)
+    {
+        stats.speed = stats.startSpeed * (1f - pct);
     }
 
     public void TakeDamage(int amount)

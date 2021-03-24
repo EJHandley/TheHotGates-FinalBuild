@@ -3,15 +3,15 @@
 public class Shop : MonoBehaviour
 {
 
-    public TurretBlueprint arcadianSpearman;
-    public TurretBlueprint spartanHoplite;
-    public TurretBlueprint helotArcher;
-    public TurretBlueprint ballista;
-    public TurretBlueprint catapult;
+    public TurretStats arcadianSpearman;
+    public TurretStats spartanHoplite;
+    public TurretStats helotArcher;
+    public TurretStats ballista;
+    public TurretStats catapult;
 
-    public TurretBlueprint ditch;
-    public TurretBlueprint woodenWall;
-    public TurretBlueprint stoneWall;
+    public TurretStats ditch;
+    public TurretStats woodenWall;
+    public TurretStats stoneWall;
 
     BuildManager buildManager;
 

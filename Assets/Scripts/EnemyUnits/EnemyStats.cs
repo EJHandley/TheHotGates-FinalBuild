@@ -13,6 +13,9 @@ public class EnemyStats
     public int health;
     public int damage;
 
+    public float startSpeed;
+    public float speed;
+
     public float attackRange;
     public float attackSpeed;
     public float attackReset;
