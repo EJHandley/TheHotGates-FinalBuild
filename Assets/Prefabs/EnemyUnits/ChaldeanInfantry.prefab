@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: -950003941031214227}
   - component: {fileID: 137699719831026851}
   - component: {fileID: 1132788955226292429}
-  - component: {fileID: 4422526540504661596}
+  - component: {fileID: 8069700753668717715}
   - component: {fileID: 3048144980593643711}
   - component: {fileID: 3254011653325040981}
+  - component: {fileID: 6312908581187325595}
   m_Layer: 0
   m_Name: ChaldeanInfantry
   m_TagString: Enemy
@@ -100,28 +101,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &4422526540504661596
-NavMeshAgent:
+--- !u!114 &8069700753668717715
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293345233405819745}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 10
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2388fb127fa2d46ade2935c1323ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3048144980593643711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +131,8 @@ MonoBehaviour:
     startHealth: 100
     health: 0
     damage: 10
+    startSpeed: 10
+    speed: 0
     attackRange: 5
     attackSpeed: 2
     attackReset: 1
@@ -157,7 +150,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b83041df799e8143be624b6dda1b2e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyController: {fileID: 0}
+  waypointObject: {fileID: 9217827130614082285, guid: e54334bdbe15f394b836f7224f4a293d, type: 3}
+--- !u!195 &6312908581187325595
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293345233405819745}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5944971321585287036
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,17 +199,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5944971321585287036}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.004989624}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0.65}
   m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
   m_Children:
   - {fileID: 5757490508355656305}
   m_Father: {fileID: 641610197803363665}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.1500092}
+  m_AnchoredPosition: {x: -0.03, y: 2.1500092}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3456799141826939997

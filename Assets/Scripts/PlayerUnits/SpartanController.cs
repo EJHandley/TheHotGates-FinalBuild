@@ -13,6 +13,11 @@ public class SpartanController : MonoBehaviour
 
     private int forSpartaPassiveChange;
 
+    private void Awake()
+    {
+        AudioManager.instance.Play("SpartanSpawn");
+    }
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);

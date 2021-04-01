@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: -950003941031214227}
   - component: {fileID: 137699719831026851}
   - component: {fileID: 1132788955226292429}
-  - component: {fileID: 4422526540504661596}
   - component: {fileID: 3048144980593643711}
+  - component: {fileID: -5166606262018994531}
+  - component: {fileID: -323778268215528729}
+  - component: {fileID: 3637614687120926087}
   m_Layer: 0
   m_Name: Sparabara
   m_TagString: Enemy
@@ -98,28 +100,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &4422526540504661596
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293345233405819745}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 10
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &3048144980593643711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,12 +118,60 @@ MonoBehaviour:
     startHealth: 200
     health: 0
     damage: 10
+    startSpeed: 5
+    speed: 0
     attackRange: 5
     attackSpeed: 2
     attackReset: 1
     reachedObjective: 5
-  turretTag: Turret
   healthBar: {fileID: 5770118422466803552}
+--- !u!114 &-5166606262018994531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293345233405819745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b83041df799e8143be624b6dda1b2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypointObject: {fileID: 3599534977755750774, guid: 1ed8705ea43d49a4e94f7b939a68fc96, type: 3}
+--- !u!195 &-323778268215528729
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293345233405819745}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &3637614687120926087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293345233405819745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2388fb127fa2d46ade2935c1323ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5944971321585287036
 GameObject:
   m_ObjectHideFlags: 0

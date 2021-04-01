@@ -1,11 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    public NavMeshAgent agent;
-
     public EnemyStats stats;
 
     private bool isDead;
@@ -17,33 +14,11 @@ public class EnemyController : MonoBehaviour
     {
         stats.health = stats.startHealth;
         stats.speed = stats.startSpeed;
-
-        agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
         PlayerStats.SpecialCurrency = PlayerPrefs.GetInt("SpecialCurrency");
-
-        stats.speed = stats.startSpeed;
-    }
-
-    public void GoToObjective()
-    {
-        Transform target = EnemyObjective.instance.enemyObjective.transform;
-        agent.SetDestination(target.position);
-
-        float distanceToObjective = Vector3.Distance(transform.position, target.position);
-        if (distanceToObjective <= stats.reachedObjective)
-        {
-            ObjectiveReached();
-        }
-    }
-
-    public void ObjectiveReached()
-    {
-        PlayerStats.Lives--;
-        Destroy(gameObject);
     }
 
     public void Attack()
@@ -54,6 +29,7 @@ public class EnemyController : MonoBehaviour
     public void Slow(float pct)
     {
         stats.speed = stats.startSpeed * (1f - pct);
+        Debug.Log("IVE BEEN SLOWED");
     }
 
     public void TakeDamage(int amount)

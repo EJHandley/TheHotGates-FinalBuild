@@ -5,6 +5,7 @@ public class TurretStats
 {
     [Header("For All Units")]
     public GameObject prefab;
+    public string buildSound;
     public int purchaseValue;
     public int sellValue;
 

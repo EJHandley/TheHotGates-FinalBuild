@@ -62,7 +62,7 @@ MonoBehaviour:
     turnSpeed: 0
     explosionRadius: 0
   slowStrength: 0.5
-  slowRadius: 1
+  slowRadius: 3
 --- !u!1001 &538882209656158643
 PrefabInstance:
   m_ObjectHideFlags: 0
