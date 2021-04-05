@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 755778998792959984}
   - component: {fileID: 5746205948682465512}
+  - component: {fileID: -8665192341179956592}
   - component: {fileID: 2576581221665355492}
   m_Layer: 0
   m_Name: ArcadianPrefab
@@ -47,23 +48,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e933b6fb405713479c47382428a5a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turret: {fileID: -8665192341179956592}
+--- !u!114 &-8665192341179956592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263787879950419187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f88bebdc841bf4d9447a7b4c3ee7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   stats:
     prefab: {fileID: 0}
-    purchaseValue: 30
+    buildSound: 
+    purchaseValue: 10
     sellValue: 0
     startHealth: 50
     health: 0
-    damage: 10
+    damage: 25
     impactEffect: {fileID: 0}
     attackRange: 5
-    attackSpeed: 5
-    attackReset: 5
+    attackSpeed: 1
+    attackReset: 1
     missilePrefab: {fileID: 0}
     missileSpeed: 0
     firePoint: {fileID: 0}
     rotationPoint: {fileID: 0}
     turnSpeed: 0
     explosionRadius: 0
+  healthBar: {fileID: 0}
   enemyTag: Enemy
 --- !u!208 &2576581221665355492
 NavMeshObstacle:

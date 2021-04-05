@@ -4,50 +4,28 @@ using UnityEngine.AI;
 [RequireComponent(typeof(EnemyController))]
 public class EnemyMovement : MonoBehaviour
 {
-    public GameObject waypointObject;
     private EnemyController enemy;
     private NavMeshAgent agent;
-
-    private Transform target;
-    private int waypointIndex = 0;
 
     void Start()
     {
         enemy = GetComponent<EnemyController>();
         agent = GetComponent<NavMeshAgent>();
-        
-        target = Waypoints.points[0];
     }
 
-    void Update()
+    private void Update()
     {
-        if (!waypointObject.activeInHierarchy)
-            return;
+        agent.speed = enemy.stats.speed;
+        agent.SetDestination(enemy.target.position);
 
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * enemy.stats.speed * Time.deltaTime, Space.World);
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(agent.destination, path);
 
-        if(Vector3.Distance(transform.position, target.position) <= 0.3f)
+        if(path.status == NavMeshPathStatus.PathPartial)
         {
-            GetNextWaypoint();
-        }
-    }
-
-    void GetNextWaypoint()
-    {
-        if(waypointIndex >= Waypoints.points.Length -1)
-        {
-            ObjectiveReached();
-            return;
+            enemy.target.tag = "Unreachable";
         }
 
-        waypointIndex++;
-        target = Waypoints.points[waypointIndex];
-    }
-
-    void ObjectiveReached()
-    {
-        PlayerStats.Lives--;
-        Destroy(gameObject);
+        Debug.Log(agent.pathStatus);
     }
 }

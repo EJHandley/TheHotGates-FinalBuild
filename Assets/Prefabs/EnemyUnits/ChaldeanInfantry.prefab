@@ -130,13 +130,14 @@ MonoBehaviour:
     specialValue: 0
     startHealth: 100
     health: 0
-    damage: 10
+    damage: 1
     startSpeed: 10
     speed: 0
-    attackRange: 5
+    attackRange: 6
     attackSpeed: 2
     attackReset: 1
     reachedObjective: 5
+  target: {fileID: 0}
   healthBar: {fileID: 5770118422466803552}
 --- !u!114 &3254011653325040981
 MonoBehaviour:
@@ -150,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b83041df799e8143be624b6dda1b2e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointObject: {fileID: 9217827130614082285, guid: e54334bdbe15f394b836f7224f4a293d, type: 3}
 --- !u!195 &6312908581187325595
 NavMeshAgent:
   m_ObjectHideFlags: 0

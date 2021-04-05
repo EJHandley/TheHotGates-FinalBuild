@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(EnemyController))]
 public class EnemyNavigation : MonoBehaviour
 {
     private EnemyController enemy;

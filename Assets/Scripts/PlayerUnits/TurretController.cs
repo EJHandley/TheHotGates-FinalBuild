@@ -1,30 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class SpartanController : MonoBehaviour
+public class TurretController : MonoBehaviour
 {
-    private Transform target;
     public TurretStats stats;
+    private Transform target;
 
     [Header("Unity Setup Fields")]
+    public Image healthBar;
     public string enemyTag = "Enemy";
 
-    private int agogeDamageChange;
-    private int agogeHealthChange;
-
-    private int forSpartaPassiveChange;
-
-    private void Awake()
-    {
-        AudioManager.instance.Play(stats.buildSound);
-    }
+    private bool isDead;
 
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
 
-        agogeDamageChange = stats.damage / 20;
-        agogeHealthChange = stats.health / 20;
-
+        stats.health = stats.startHealth;
     }
 
     void UpdateTarget()
@@ -67,21 +61,6 @@ public class SpartanController : MonoBehaviour
         }
 
         stats.attackReset -= Time.deltaTime;
-
-        if(!UpgradeSystem.AgogeIsEnabled && !UpgradeSystem.SpartaIsEnabled)
-        {
-            return;
-        }
-
-        if(UpgradeSystem.AgogeIsEnabled)
-        {
-            AgogeUpgradeEnabled();
-        }
-
-        if(UpgradeSystem.SpartaIsEnabled)
-        {
-            ForSpartaUpgradeEnabled();
-        }
     }
 
     void Attack()
@@ -99,20 +78,19 @@ public class SpartanController : MonoBehaviour
         }
     }
 
-    void AgogeUpgradeEnabled()
+    public void TakeDamage(int amount)
     {
-        stats.damage += agogeDamageChange;
-        stats.health += agogeHealthChange;
+        stats.health -= amount;
+
+        if (stats.health <= 0 && !isDead)
+        {
+            Die();
+        }
     }
 
-    void ForSpartaUpgradeEnabled()
+    void Die()
     {
-        //DO SOMETHING
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stats.attackRange);
+        isDead = true;
+        Destroy(gameObject);
     }
 }

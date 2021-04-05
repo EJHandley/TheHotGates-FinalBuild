@@ -15,18 +15,6 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    [Header("Attacking Units")]
-    public GameObject arcadianPrefab;
-    public GameObject spartanPrefab;
-    public GameObject archerPrefab;
-    public GameObject ballistaPrefab;
-    public GameObject catapultPrefab;
-
-    [Header("Defensive Buildings")]
-    public GameObject ditchPrefab;
-    public GameObject woodenWallPrefab;
-    public GameObject stoneWallPrefab;
-
     private TurretStats turretToBuild;
 
     public bool CanBuild {get{return turretToBuild != null;}}
