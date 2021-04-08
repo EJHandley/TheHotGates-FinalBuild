@@ -124,7 +124,7 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void ObjectiveReached()
+    public void ObjectiveReached()
     {
         PlayerStats.Lives--;
         Destroy(gameObject);

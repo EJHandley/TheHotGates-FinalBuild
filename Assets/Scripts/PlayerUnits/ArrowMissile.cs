@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class BoltMissile : MonoBehaviour
+public class ArrowMissile : MonoBehaviour
 {
-    public BallistaController ballista;
+    public ArcherController archer;
 
     private Transform target;
 
-    private GameObject enemy;
+    public GameObject enemy;
 
     public void Seek(Transform _target)
     {
@@ -15,7 +15,7 @@ public class BoltMissile : MonoBehaviour
 
     void Update()
     {
-        enemy = GameObject.FindGameObjectWithTag(ballista.turret.enemyTag);
+        enemy = GameObject.FindGameObjectWithTag(archer.turret.enemyTag);
 
         if (target == null)
         {
@@ -24,9 +24,9 @@ public class BoltMissile : MonoBehaviour
         }
 
         Vector3 dir = target.position - transform.position;
-        float distanceThisFrame = ballista.turret.stats.missileSpeed * Time.deltaTime;
+        float distanceThisFrame = archer.turret.stats.missileSpeed * Time.deltaTime;
 
-        if(dir.magnitude <= distanceThisFrame)
+        if (dir.magnitude <= distanceThisFrame)
         {
             HitTarget();
             return;
@@ -37,7 +37,7 @@ public class BoltMissile : MonoBehaviour
 
     void HitTarget()
     {
-        GameObject bloodSpatter = (GameObject)Instantiate(ballista.turret.stats.impactEffect, transform.position, transform.rotation);
+        GameObject bloodSpatter = (GameObject)Instantiate(archer.turret.stats.impactEffect, transform.position, transform.rotation);
         Destroy(bloodSpatter, 2f);
 
         Destroy(gameObject);
@@ -52,7 +52,7 @@ public class BoltMissile : MonoBehaviour
 
         if (e != null)
         {
-            e.TakeDamage(ballista.turret.stats.damage);
+            e.TakeDamage(archer.turret.stats.damage);
         }
     }
 }

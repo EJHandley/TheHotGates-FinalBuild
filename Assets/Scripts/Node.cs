@@ -12,6 +12,9 @@ public class Node : MonoBehaviour
     [Header("Optional")]
     public GameObject turret;
 
+    public GameObject turretPreview;
+    public bool turretPreviewed;
+
     public Vector3 positionOffset;
 
     BuildManager buildManager;
@@ -46,19 +49,24 @@ public class Node : MonoBehaviour
         buildManager.BuildTurretOn(this);
     }
 
-    void OnMouseEnter()
+    void OnMouseOver()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (turret != null)
             return;
 
-        if (!buildManager.CanBuild)
-            return;
+        if (!turretPreviewed)
+        {
+            turretPreview = Instantiate(buildManager.turretToBuild.preview, GetBuildPosition(), Quaternion.identity);
+            turretPreviewed = true;
+        }
 
         rend.material.color = hoverColor;
     }
 
     void OnMouseExit()
     {
+        Destroy(turretPreview);
+        turretPreviewed = false;
         rend.material.color = startColor;
     }
 }

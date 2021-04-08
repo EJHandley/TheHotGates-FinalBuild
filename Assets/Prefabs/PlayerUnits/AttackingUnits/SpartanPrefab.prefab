@@ -44,6 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4187057243431002098}
   - component: {fileID: -1584671614412362293}
+  - component: {fileID: -8739966874650856908}
   - component: {fileID: -5989938950459785145}
   m_Layer: 0
   m_Name: SpartanPrefab
@@ -81,25 +82,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bbb7f0f81267349bb3411b68d35c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turret: {fileID: -8739966874650856908}
+--- !u!114 &-8739966874650856908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097777527800099150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f88bebdc841bf4d9447a7b4c3ee7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   stats:
-    prefab: {fileID: 0}
+    prefab: {fileID: 1097777527800099150}
+    preview: {fileID: 0}
     buildSound: 
     purchaseValue: 0
     sellValue: 0
-    startHealth: 100
+    startHealth: 0
     health: 0
-    damage: 20
+    damage: 0
     impactEffect: {fileID: 0}
-    attackRange: 5
-    attackSpeed: 1
-    attackReset: 1
+    attackRange: 0
+    attackSpeed: 0
+    attackReset: 0
     missilePrefab: {fileID: 0}
     missileSpeed: 0
     firePoint: {fileID: 0}
     rotationPoint: {fileID: 0}
     turnSpeed: 0
     explosionRadius: 0
+    slowStrength: 0
+    slowRadius: 0
+  target: {fileID: 0}
+  healthBar: {fileID: 0}
   enemyTag: Enemy
+  isRanged: 0
 --- !u!208 &-5989938950459785145
 NavMeshObstacle:
   m_ObjectHideFlags: 0

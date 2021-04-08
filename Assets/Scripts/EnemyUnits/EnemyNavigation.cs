@@ -18,7 +18,18 @@ public class EnemyNavigation : MonoBehaviour
 
     private void Update()
     {
-        agent.SetDestination(target.position);
+        GoToObjective();
         agent.speed = enemy.stats.speed;
+    }
+
+    void GoToObjective()
+    {
+        agent.SetDestination(target.position);
+
+        float distanceToObjective = Vector3.Distance(transform.position, target.position);
+        if(distanceToObjective <= enemy.stats.reachedObjective)
+        {
+            enemy.ObjectiveReached();
+        }
     }
 }

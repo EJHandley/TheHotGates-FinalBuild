@@ -35,7 +35,7 @@ public class WaveSpawner : MonoBehaviour
             AllWavesCompleted();
         }
 
-        waveCountdownText.text = Mathf.Round(waveCountdown).ToString();
+        waveCountdownText.text = "Next Wave In:" + " " + Mathf.Round(waveCountdown).ToString();
     }
 
     public void StartCountdown()

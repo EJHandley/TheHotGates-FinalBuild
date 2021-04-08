@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class ArcadianController : MonoBehaviour
 {
@@ -13,10 +12,15 @@ public class ArcadianController : MonoBehaviour
     private int wrathDamageChange;
     private float wrathAttackSpeedChange;
 
+    private void Awake()
+    {
+        AudioManager.instance.Play(turret.stats.buildSound);
+    }
+
     void Start()
     {
         arcadianHealthChange = turret.stats.health / 10;
-        arcadianValueChange = turret.stats.purchaseValue / 50;
+        arcadianValueChange = turret.stats.purchaseValue / 2;
 
         wrathDamageChange = turret.stats.damage / 10;
         wrathAttackSpeedChange = turret.stats.attackSpeed;

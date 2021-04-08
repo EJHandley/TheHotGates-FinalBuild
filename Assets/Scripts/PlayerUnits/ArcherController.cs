@@ -2,11 +2,9 @@
 
 public class ArcherController : MonoBehaviour
 {
-    private Transform target;
-    public TurretStats stats;
+    public TurretController turret;
 
-    [Header("Unity Setup Fields")]
-    public string enemyTag = "Enemy";
+    private int isTrue = 1;
 
     private int skiritaiDamageChange;
     private float skiritaiRangeChange;
@@ -14,109 +12,53 @@ public class ArcherController : MonoBehaviour
     private int peltastDamageChange;
     private float peltastRangeChange;
 
-    void Start()
+    private void Awake()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
-
-        skiritaiDamageChange = stats.damage / 20;
-        skiritaiRangeChange = stats.attackRange / 20;
-
-        peltastDamageChange = stats.damage / 40;
-        peltastRangeChange = stats.attackRange / 10;
+        AudioManager.instance.Play(turret.stats.buildSound);
     }
 
-    void UpdateTarget()
+    void Start()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
+        skiritaiDamageChange = turret.stats.damage / 5;
+        skiritaiRangeChange = turret.stats.attackRange / 5;
 
-        foreach (GameObject enemy in enemies)
-        {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
-            {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-            }
-        }
-
-        if (nearestEnemy != null && shortestDistance <= stats.attackRange)
-        {
-            target = nearestEnemy.transform;
-        }
-        else
-        {
-            target = null;
-        }
+        peltastDamageChange = turret.stats.damage / 2;
+        peltastRangeChange = turret.stats.attackRange / 5;
     }
 
     void Update()
     {
-        if(target == null)
-        {
-            return;
-        }
-
-        Vector3 dir = (target.position - transform.position);
-        Quaternion aimRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(stats.rotationPoint.rotation, aimRotation, Time.deltaTime * stats.turnSpeed).eulerAngles;
-        stats.rotationPoint.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        if (stats.attackReset <= 0f)
-        {
-            Attack();
-            stats.attackReset = 1f / stats.attackSpeed;
-        }
-
-        stats.attackReset -= Time.deltaTime;
-
-        if(!UpgradeSystem.SkiritaiIsEnabled && !UpgradeSystem.PeltastIsEnabled)
-        {
-            return;
-        }
-
-        if(UpgradeSystem.SkiritaiIsEnabled)
+        if (PlayerPrefs.GetInt("SkiritaiActivated") == isTrue)
         {
             SkiritaiUpgradeEnabled();
         }
 
-        if(UpgradeSystem.PeltastIsEnabled)
+        if (PlayerPrefs.GetInt("PeltastActivated") == isTrue)
         {
             PeltastUpgradeEnabled();
         }
     }
 
-    void Attack()
+    void ArcherPassive()
     {
-        Damage(target.transform);
-    }
 
-    void Damage(Transform enemy)
-    {
-        EnemyController e = enemy.GetComponent<EnemyController>();
-
-        if (e != null)
-        {
-            e.TakeDamage(stats.damage);
-        }
     }
 
     void SkiritaiUpgradeEnabled()
     {
-        stats.damage += skiritaiDamageChange;
-        stats.attackRange += skiritaiRangeChange;
+        turret.stats.damage += skiritaiDamageChange;
+        turret.stats.attackRange += skiritaiRangeChange;
     }
 
     void PeltastUpgradeEnabled()
     {
-        stats.damage += peltastDamageChange;
-        stats.attackRange -= peltastRangeChange;
+        turret.stats.damage += peltastDamageChange;
+        turret.stats.attackRange -= peltastRangeChange;
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stats.attackRange);
+        Gizmos.DrawWireSphere(transform.position, turret.stats.attackRange);
     }
 }

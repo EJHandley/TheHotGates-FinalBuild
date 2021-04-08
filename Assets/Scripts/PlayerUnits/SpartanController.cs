@@ -2,11 +2,9 @@
 
 public class SpartanController : MonoBehaviour
 {
-    private Transform target;
-    public TurretStats stats;
+    public TurretController turret;
 
-    [Header("Unity Setup Fields")]
-    public string enemyTag = "Enemy";
+    private int isTrue = 1;
 
     private int agogeDamageChange;
     private int agogeHealthChange;
@@ -15,94 +13,38 @@ public class SpartanController : MonoBehaviour
 
     private void Awake()
     {
-        AudioManager.instance.Play(stats.buildSound);
+        AudioManager.instance.Play(turret.stats.buildSound);
     }
 
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        agogeDamageChange = turret.stats.damage / 5;
+        agogeHealthChange = turret.stats.health / 5;
 
-        agogeDamageChange = stats.damage / 20;
-        agogeHealthChange = stats.health / 20;
-
-    }
-
-    void UpdateTarget()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
-
-        foreach (GameObject enemy in enemies)
-        {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
-            {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-            }
-        }
-
-        if (nearestEnemy != null && shortestDistance <= stats.attackRange)
-        {
-            target = nearestEnemy.transform;
-        }
-        else
-        {
-            target = null;
-        }
     }
 
     void Update()
     {
-        if (target == null)
-        {
-            return;
-        }
-
-        if (stats.attackReset <= 0f)
-        {
-            Attack();
-            stats.attackReset = 1f / stats.attackSpeed;
-        }
-
-        stats.attackReset -= Time.deltaTime;
-
-        if(!UpgradeSystem.AgogeIsEnabled && !UpgradeSystem.SpartaIsEnabled)
-        {
-            return;
-        }
-
-        if(UpgradeSystem.AgogeIsEnabled)
+        if (PlayerPrefs.GetInt("AgogeActivated") == isTrue)
         {
             AgogeUpgradeEnabled();
         }
 
-        if(UpgradeSystem.SpartaIsEnabled)
+        if (PlayerPrefs.GetInt("ForSpartaActivated") == isTrue)
         {
             ForSpartaUpgradeEnabled();
         }
     }
 
-    void Attack()
+    void SpartanPassive()
     {
-        Damage(target.transform);
-    }
 
-    void Damage(Transform enemy)
-    {
-        EnemyController e = enemy.GetComponent<EnemyController>();
-
-        if (e != null)
-        {
-            e.TakeDamage(stats.damage);
-        }
     }
 
     void AgogeUpgradeEnabled()
     {
-        stats.damage += agogeDamageChange;
-        stats.health += agogeHealthChange;
+        turret.stats.damage += agogeDamageChange;
+        turret.stats.health += agogeHealthChange;
     }
 
     void ForSpartaUpgradeEnabled()
@@ -113,6 +55,6 @@ public class SpartanController : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stats.attackRange);
+        Gizmos.DrawWireSphere(transform.position, turret.stats.attackRange);
     }
 }

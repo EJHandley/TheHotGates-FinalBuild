@@ -1,20 +1,43 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class StoneWallController : MonoBehaviour
 {
     public TurretController barricade;
 
-    [Header("Unity Parameters")]
-    public Image healthBar;
+    private int isTrue = 1;
+
+    private int pozzolanicHealthChange;
+
+    private void Awake()
+    {
+        AudioManager.instance.Play(barricade.stats.buildSound);
+    }
 
     void Start()
     {
-       
+        pozzolanicHealthChange = barricade.stats.startHealth / 2;
     }
 
     void Update()
     {
-        
+        if (PlayerPrefs.GetInt("PozzolanicActivated") == isTrue)
+        {
+            PozzolanicUpgradeEnabled();
+        }
+
+        if (PlayerPrefs.GetInt("SappedActivated") == isTrue)
+        {
+            SappedUpgradeEnabled();
+        }
+    }
+
+    void PozzolanicUpgradeEnabled()
+    {
+        barricade.stats.startHealth += pozzolanicHealthChange;
+    }
+
+    void SappedUpgradeEnabled()
+    {
+
     }
 }

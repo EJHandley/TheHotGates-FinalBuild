@@ -2,100 +2,42 @@
 
 public class BallistaController : MonoBehaviour
 {
-    public TurretStats stats;
-  
-    public string enemyTag = "Enemy";
+    public TurretController turret;
 
-    private Transform target;
+    private int isTrue = 1;
 
     private float springsRangeUpgrade;
     private float springsSpeedUpgrade;
 
-    void Start()
+    private void Awake()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
-
-        springsRangeUpgrade = stats.attackRange / 5;
-        springsSpeedUpgrade = stats.attackSpeed / 5;
+        AudioManager.instance.Play(turret.stats.buildSound);
     }
 
-    void UpdateTarget()
+    void Start()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
-
-        foreach (GameObject enemy in enemies)
-        {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if(distanceToEnemy < shortestDistance)
-            {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-            }
-        }
-
-        if(nearestEnemy != null && shortestDistance <= stats.attackRange)
-        {
-            target = nearestEnemy.transform;
-        }
-        else
-        {
-            target = null;
-        }
+        springsRangeUpgrade = turret.stats.attackRange / 5;
+        springsSpeedUpgrade = turret.stats.attackSpeed / 5;
     }
 
     void Update()
     {
-        if (target == null)
-        {
-            return;
-        }
-
-        Vector3 dir = (target.position - transform.position);
-        Quaternion aimRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(stats.rotationPoint.rotation, aimRotation, Time.deltaTime * stats.turnSpeed).eulerAngles;
-        stats.rotationPoint.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        if (stats.attackReset <= 0f)
-        {
-            Shoot();
-            stats.attackReset = 1f / stats.attackSpeed;
-        }
-
-        stats.attackReset -= Time.deltaTime;
-
-        if (!UpgradeSystem.SpringsIsEnabled && !UpgradeSystem.JointIsEnabled)
-        {
-            return;
-        }
-
-        if (UpgradeSystem.SpringsIsEnabled)
+        if (PlayerPrefs.GetInt("SpringsActivated") == isTrue)
         {
             SpringsUpgradeEnabled();
         }
 
-        if (UpgradeSystem.JointIsEnabled)
+        if (PlayerPrefs.GetInt("JointActivated") == isTrue)
         {
             JointUpgradeEnabled();
         }
     }
 
-    void Shoot()
-    {
-        GameObject boltFired = Instantiate(stats.missilePrefab, stats.firePoint.position, stats.firePoint.rotation);
-        BoltMissile bolt = boltFired.GetComponent<BoltMissile>();
-
-        if(bolt != null)
-        {
-            bolt.Seek(target);
-        }
-    }
 
     void SpringsUpgradeEnabled()
     {
-        stats.attackRange += springsRangeUpgrade;
-        stats.attackSpeed += springsSpeedUpgrade;
+        turret.stats.attackRange += springsRangeUpgrade;
+        turret.stats.attackSpeed += springsSpeedUpgrade;
     }
 
     void JointUpgradeEnabled()
@@ -106,6 +48,6 @@ public class BallistaController : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stats.attackRange);    
+        Gizmos.DrawWireSphere(transform.position, turret.stats.attackRange);    
     }
 }

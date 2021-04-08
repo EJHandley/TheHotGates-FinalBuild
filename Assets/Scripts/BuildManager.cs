@@ -2,7 +2,6 @@
 
 public class BuildManager : MonoBehaviour
 {
-
     public static BuildManager instance;
 
     void Awake()
@@ -15,7 +14,8 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    private TurretStats turretToBuild;
+    [HideInInspector]
+    public TurretStats turretToBuild;
 
     public bool CanBuild {get{return turretToBuild != null;}}
 

@@ -2,7 +2,7 @@
 
 public class StoneMissile : MonoBehaviour
 {
-    public CatapultController catapultController;
+    public CatapultController catapult;
 
     private Transform target;
 
@@ -15,7 +15,7 @@ public class StoneMissile : MonoBehaviour
 
     void Update()
     {
-        enemy = GameObject.FindGameObjectWithTag(catapultController.enemyTag);
+        enemy = GameObject.FindGameObjectWithTag(catapult.turret.enemyTag);
 
         if (target == null)
         {
@@ -24,7 +24,7 @@ public class StoneMissile : MonoBehaviour
         }
 
         Vector3 dir = target.position - transform.position;
-        float distanceThisFrame = catapultController.stats.missileSpeed * Time.deltaTime;
+        float distanceThisFrame = catapult.turret.stats.missileSpeed * Time.deltaTime;
 
         if (dir.magnitude <= distanceThisFrame)
         {
@@ -39,10 +39,10 @@ public class StoneMissile : MonoBehaviour
 
     void HitTarget()
     {
-        GameObject bloodSpatter = (GameObject)Instantiate(catapultController.stats.impactEffect, transform.position, transform.rotation);
+        GameObject bloodSpatter = (GameObject)Instantiate(catapult.turret.stats.impactEffect, transform.position, transform.rotation);
         Destroy(bloodSpatter, 2f);
 
-        if(catapultController.stats.explosionRadius > 0f)
+        if(catapult.turret.stats.explosionRadius > 0f)
         {
             Explode();
         }
@@ -52,7 +52,7 @@ public class StoneMissile : MonoBehaviour
 
     void Explode ()
     {
-        Collider [] colliders = Physics.OverlapSphere(transform.position, catapultController.stats.explosionRadius);
+        Collider [] colliders = Physics.OverlapSphere(transform.position, catapult.turret.stats.explosionRadius);
         foreach (Collider collider in colliders)
         {
             if(collider.tag == "Enemy")
@@ -68,13 +68,13 @@ public class StoneMissile : MonoBehaviour
 
         if (e != null)
         {
-            e.TakeDamage(catapultController.stats.damage);
+            e.TakeDamage(catapult.turret.stats.damage);
         }
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, catapultController.stats.explosionRadius);
+        Gizmos.DrawWireSphere(transform.position, catapult.turret.stats.explosionRadius);
     }
 }

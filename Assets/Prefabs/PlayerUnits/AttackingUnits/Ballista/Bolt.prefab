@@ -109,6 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df54c41942160c04db139ff9148d3553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballistaController: {fileID: 7562820008435133511, guid: a6ad1b5df634b8b4da7e33e00abdf576, type: 3}
+  ballista: {fileID: 7562820008435133511, guid: a6ad1b5df634b8b4da7e33e00abdf576, type: 3}
   enemy: {fileID: 0}
-  enemyTag: Enemy

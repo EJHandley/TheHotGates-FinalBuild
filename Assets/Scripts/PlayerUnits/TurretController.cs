@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TurretController : MonoBehaviour
 {
     public TurretStats stats;
-    private Transform target;
+    public Transform target;
 
     [Header("Unity Setup Fields")]
     public Image healthBar;
     public string enemyTag = "Enemy";
 
     private bool isDead;
+    public bool isRanged;
 
     void Start()
     {
@@ -54,13 +53,55 @@ public class TurretController : MonoBehaviour
             return;
         }
 
+        if(isRanged)
+        {
+            LockOnTarget();
+        }
+
         if (stats.attackReset <= 0f)
         {
-            Attack();
-            stats.attackReset = 1f / stats.attackSpeed;
+            if (isRanged)
+            {
+                Shoot();
+            }
+            else
+            {
+                Attack();
+            }
+            
+        stats.attackReset = 1f / stats.attackSpeed;
         }
 
         stats.attackReset -= Time.deltaTime;
+    }
+
+    void LockOnTarget()
+    {
+        Vector3 dir = (target.position - transform.position);
+        Quaternion aimRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(stats.rotationPoint.rotation, aimRotation, Time.deltaTime * stats.turnSpeed).eulerAngles;
+        stats.rotationPoint.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+    }
+
+    void Shoot()
+    {
+        GameObject projectile = Instantiate(stats.missilePrefab, stats.firePoint.position, stats.firePoint.rotation);
+        BoltMissile bolt = projectile.GetComponent<BoltMissile>();
+        StoneMissile stone = projectile.GetComponent<StoneMissile>();
+        ArrowMissile arrow = projectile.GetComponent<ArrowMissile>();
+
+        if (bolt != null)
+        {
+            bolt.Seek(target);
+        }
+        else if (stone != null)
+        {
+            stone.Seek(target);
+        }
+        else if (arrow != null)
+        {
+            arrow.Seek(target);
+        }
     }
 
     void Attack()

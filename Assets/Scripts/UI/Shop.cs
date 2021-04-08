@@ -2,16 +2,15 @@
 
 public class Shop : MonoBehaviour
 {
+    public ArcadianController arcadian;
+    public SpartanController spartan;
+    public ArcherController archer;
+    public BallistaController ballista;
+    public CatapultController catapult;
 
-    public TurretStats arcadianSpearman;
-    public TurretStats spartanHoplite;
-    public TurretStats helotArcher;
-    public TurretStats ballista;
-    public TurretStats catapult;
-
-    public TurretStats ditch;
-    public TurretStats woodenWall;
-    public TurretStats stoneWall;
+    public DitchController ditch;
+    public WoodenWallController woodenWall;
+    public StoneWallController stoneWall;
 
     BuildManager buildManager;
 
@@ -22,42 +21,42 @@ public class Shop : MonoBehaviour
 
     public void SelectArcadian()
     {
-        buildManager.SelectTurretToBuild(arcadianSpearman);
+        buildManager.SelectTurretToBuild(arcadian.turret.stats);
     }
 
     public void SelectSpartan()
     {
-        buildManager.SelectTurretToBuild(spartanHoplite);
+        buildManager.SelectTurretToBuild(spartan.turret.stats);
     }
 
     public void SelectArcher()
     {
-        buildManager.SelectTurretToBuild(helotArcher);
+        buildManager.SelectTurretToBuild(archer.turret.stats);
     }
 
     public void SelectBallista()
     {
-        buildManager.SelectTurretToBuild(ballista);
+        buildManager.SelectTurretToBuild(ballista.turret.stats);
     }
 
     public void SelectCatapult()
     {
-        buildManager.SelectTurretToBuild(catapult);
+        buildManager.SelectTurretToBuild(catapult.turret.stats);
     }
 
     public void SelectDitch()
     {
-        buildManager.SelectTurretToBuild(ditch);
+        buildManager.SelectTurretToBuild(ditch.barricade.stats);
     }
 
     public void SelectWoodenWall()
     {
-        buildManager.SelectTurretToBuild(woodenWall);
+        buildManager.SelectTurretToBuild(woodenWall.barricade.stats);
     }
 
     public void SelectStoneWall()
     {
-        buildManager.SelectTurretToBuild(stoneWall);
+        buildManager.SelectTurretToBuild(stoneWall.barricade.stats);
     }
 
 }

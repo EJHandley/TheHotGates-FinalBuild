@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    prefab: {fileID: 0}
+    prefab: {fileID: 263787879950419187}
     buildSound: 
     purchaseValue: 10
     sellValue: 0
@@ -79,8 +79,12 @@ MonoBehaviour:
     rotationPoint: {fileID: 0}
     turnSpeed: 0
     explosionRadius: 0
+    slowStrength: 0.5
+    slowRadius: 1
+  target: {fileID: 0}
   healthBar: {fileID: 0}
   enemyTag: Enemy
+  isRanged: 0
 --- !u!208 &2576581221665355492
 NavMeshObstacle:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ public class TurretStats
 {
     [Header("For All Units")]
     public GameObject prefab;
+    public GameObject preview;
     public string buildSound;
     public int purchaseValue;
     public int sellValue;
@@ -28,4 +29,8 @@ public class TurretStats
 
     [Header("For Catapults and Stone Wall")]
     public float explosionRadius;
+
+    [Header("For Ditch")]
+    public float slowStrength;
+    public float slowRadius;
 }

@@ -48,8 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barricade: {fileID: 2795027944962803961}
-  slowStrength: 0.5
-  slowRadius: 3
 --- !u!114 &2795027944962803961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +61,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    prefab: {fileID: 0}
+    prefab: {fileID: 538882208707272889}
+    preview: {fileID: 0}
     buildSound: 
     purchaseValue: 0
     sellValue: 0
@@ -80,8 +79,12 @@ MonoBehaviour:
     rotationPoint: {fileID: 0}
     turnSpeed: 0
     explosionRadius: 0
+    slowStrength: 3
+    slowRadius: 1
+  target: {fileID: 0}
   healthBar: {fileID: 0}
   enemyTag: Enemy
+  isRanged: 0
 --- !u!136 &-7193841652500481133
 CapsuleCollider:
   m_ObjectHideFlags: 0
