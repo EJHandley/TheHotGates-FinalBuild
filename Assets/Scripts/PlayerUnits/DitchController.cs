@@ -3,6 +3,7 @@
 public class DitchController: MonoBehaviour
 {
     public TurretController barricade;
+    private EnemyController enemy;
 
     private int isTrue = 1;
 
@@ -17,6 +18,7 @@ public class DitchController: MonoBehaviour
 
     void Start()
     {
+        enemy = GetComponent<EnemyController>();
         moatSlowChange = barricade.stats.slowStrength / 2;
         pitfallDamageChange = 10;
     }
@@ -41,7 +43,19 @@ public class DitchController: MonoBehaviour
             EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
             if(enemy != null)
             {
-                enemy.Slow(barricade.stats.slowStrength);
+                enemy.stats.speed = enemy.stats.startSpeed / barricade.stats.slowStrength;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Enemy"))
+        {
+            EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                enemy.stats.speed = enemy.stats.startSpeed;
             }
         }
     }

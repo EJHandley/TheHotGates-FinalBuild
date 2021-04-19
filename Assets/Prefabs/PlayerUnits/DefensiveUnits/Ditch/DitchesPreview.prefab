@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &538882208707272889
+--- !u!1 &22523545045079440
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,119 +8,35 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 538882208707272890}
-  - component: {fileID: -6020340438010333551}
-  - component: {fileID: 2795027944962803961}
-  - component: {fileID: -7193841652500481133}
-  - component: {fileID: -5368379798949635411}
+  - component: {fileID: 22523545045079443}
   m_Layer: 0
-  m_Name: Ditches
+  m_Name: DitchesPreview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &538882208707272890
+--- !u!4 &22523545045079443
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538882208707272889}
+  m_GameObject: {fileID: 22523545045079440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 47.346, y: 1.005, z: 21.22}
+  m_LocalPosition: {x: -23.6, y: 1.005, z: -14.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 67773891449740888}
+  - {fileID: 565971919125392241}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6020340438010333551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538882208707272889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84659cb0523188046b8f151bf7023e28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barricade: {fileID: 2795027944962803961}
---- !u!114 &2795027944962803961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538882208707272889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f88bebdc841bf4d9447a7b4c3ee7ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    prefab: {fileID: 538882208707272889}
-    preview: {fileID: 0}
-    buildSound: 
-    purchaseValue: 0
-    sellValue: 0
-    startHealth: 0
-    health: 0
-    damage: 0
-    impactEffect: {fileID: 0}
-    attackRange: 0
-    attackSpeed: 0
-    attackReset: 0
-    missilePrefab: {fileID: 0}
-    missileSpeed: 0
-    firePoint: {fileID: 0}
-    rotationPoint: {fileID: 0}
-    turnSpeed: 0
-    explosionRadius: 0
-    slowStrength: 3
-    slowRadius: 1
-  target: {fileID: 0}
-  healthBar: {fileID: 0}
-  enemyTag: Enemy
-  isRanged: 0
---- !u!136 &-7193841652500481133
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538882208707272889}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 3
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &-5368379798949635411
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538882208707272889}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1001 &538882209656158643
+--- !u!1001 &22523544129621146
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 538882208707272890}
+    m_TransformParent: {fileID: 22523545045079443}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e7153e3850659224c8ee0725432baafd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -181,11 +97,11 @@ PrefabInstance:
     - target: {fileID: -4683669308469848369, guid: e7153e3850659224c8ee0725432baafd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 93c1910b132ed9e479ce55900ee6d322, type: 2}
+      objectReference: {fileID: 2100000, guid: 7e1d397044c1f684d983edd4ad9c9d6a, type: 2}
     - target: {fileID: -1439730007547781893, guid: e7153e3850659224c8ee0725432baafd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6dec1d6e1395ff041b871a7615532b90, type: 2}
+      objectReference: {fileID: 2100000, guid: 7e1d397044c1f684d983edd4ad9c9d6a, type: 2}
     - target: {fileID: 919132149155446097, guid: e7153e3850659224c8ee0725432baafd, type: 3}
       propertyPath: m_Name
       value: Model
@@ -193,11 +109,11 @@ PrefabInstance:
     - target: {fileID: 7071182760956848314, guid: e7153e3850659224c8ee0725432baafd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6dec1d6e1395ff041b871a7615532b90, type: 2}
+      objectReference: {fileID: 2100000, guid: 7e1d397044c1f684d983edd4ad9c9d6a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7153e3850659224c8ee0725432baafd, type: 3}
---- !u!4 &67773891449740888 stripped
+--- !u!4 &565971919125392241 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e7153e3850659224c8ee0725432baafd, type: 3}
-  m_PrefabInstance: {fileID: 538882209656158643}
+  m_PrefabInstance: {fileID: 22523544129621146}
   m_PrefabAsset: {fileID: 0}

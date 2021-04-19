@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1132788955226292429}
   - component: {fileID: 4422526540504661596}
   - component: {fileID: 3048144980593643711}
+  - component: {fileID: 4187289754440714483}
+  - component: {fileID: 5532858156880922332}
   m_Layer: 0
   m_Name: WarElephant
   m_TagString: Enemy
@@ -135,15 +137,41 @@ MonoBehaviour:
   stats:
     normalValue: 0
     specialValue: 1
-    startHealth: 150
+    startHealth: 250
     health: 0
     damage: 50
+    startSpeed: 3
+    speed: 0
     attackRange: 10
-    attackSpeed: 10
-    attackReset: 10
+    attackSpeed: 0.333
+    attackReset: 1
     reachedObjective: 5
-  turretTag: Turret
+  target: {fileID: 0}
   healthBar: {fileID: 5770118422466803552}
+--- !u!114 &4187289754440714483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293345233405819745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b83041df799e8143be624b6dda1b2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5532858156880922332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293345233405819745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2388fb127fa2d46ade2935c1323ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5944971321585287036
 GameObject:
   m_ObjectHideFlags: 0

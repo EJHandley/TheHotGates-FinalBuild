@@ -56,8 +56,6 @@ public class EnemyController : MonoBehaviour
             attackEnemies.enabled = false;
             goToObjective.enabled = true;
         }
-
-        stats.speed = stats.startSpeed;
     }
 
     void Update()
@@ -77,12 +75,6 @@ public class EnemyController : MonoBehaviour
         }
 
         stats.attackReset -= Time.deltaTime;
-    }
-
-    public void Slow(float pct)
-    {
-        stats.speed = stats.startSpeed * (1f - pct);
-        Debug.Log("IVE BEEN SLOWED");
     }
 
     void Attack()

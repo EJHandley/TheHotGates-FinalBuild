@@ -4,8 +4,8 @@ using TMPro;
 
 public class Spawner : MonoBehaviour
 {
-    enum SpawnState { SPAWNING, WAITING, COUNTING };
-    SpawnState state = SpawnState.COUNTING;
+    public enum SpawnState { SPAWNING, WAITING, COUNTING, HOLDING };
+    public SpawnState state = SpawnState.HOLDING;
 
     [System.Serializable]
     public class Wave
@@ -31,8 +31,24 @@ public class Spawner : MonoBehaviour
 
     public float enemyCheck = 1f;
 
+    bool waveStarted = false;
+
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            waveSpawner.waveStartText.enabled = false;
+            waveSpawner.waveCountdownText.enabled = true;
+            waveStarted = true;
+        }
+
+        if (!waveStarted)
+        {
+            waveSpawner.waveStartText.enabled = true;
+            waveSpawner.waveCountdownText.enabled = false;
+            return;
+        }
+
         if (state == SpawnState.WAITING)
         {
             if (!EnemyIsAlive())
@@ -74,6 +90,10 @@ public class Spawner : MonoBehaviour
         else
         {
             nextWave++;
+            if(nextWave == 4 || nextWave == 7 || nextWave == 10)
+            {
+                waveStarted = false;
+            }
         }
     }
 

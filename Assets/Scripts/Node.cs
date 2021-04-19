@@ -37,14 +37,11 @@ public class Node : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (!buildManager.CanBuild)
+        if (turret != null)
             return;
 
-        if (turret != null)
-        {
-            Debug.Log("NOPE!");
+        if (!buildManager.CanBuild)
             return;
-        }
 
         buildManager.BuildTurretOn(this);
     }
@@ -52,6 +49,9 @@ public class Node : MonoBehaviour
     void OnMouseOver()
     {
         if (turret != null)
+            return;
+
+        if (!buildManager.turretSelected)
             return;
 
         if (!turretPreviewed)

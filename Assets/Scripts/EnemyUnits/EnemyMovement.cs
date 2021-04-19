@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     private EnemyController enemy;
     private NavMeshAgent agent;
 
-    void Start()
+    void Awake()
     {
         enemy = GetComponent<EnemyController>();
         agent = GetComponent<NavMeshAgent>();
@@ -15,8 +15,10 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        agent.speed = enemy.stats.speed;
-        agent.SetDestination(enemy.target.position);
+        if(enemy.target != null)
+        {
+            agent.SetDestination(enemy.target.position);
+        }
 
         NavMeshPath path = new NavMeshPath();
         agent.CalculatePath(agent.destination, path);
@@ -27,5 +29,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         Debug.Log(agent.pathStatus);
+
+        agent.speed = enemy.stats.speed;
     }
 }

@@ -8,6 +8,7 @@ public class WaveSpawner : MonoBehaviour
     public float waveCountdown;
 
     public TMP_Text waveCountdownText;
+    public TMP_Text waveStartText;
 
     public float enemyCheck = 1f;
     public float spawnerCheck = 1f;
@@ -33,6 +34,7 @@ public class WaveSpawner : MonoBehaviour
         if (!SpawnerIsActive())
         {
             AllWavesCompleted();
+            return;
         }
 
         waveCountdownText.text = "Next Wave In:" + " " + Mathf.Round(waveCountdown).ToString();

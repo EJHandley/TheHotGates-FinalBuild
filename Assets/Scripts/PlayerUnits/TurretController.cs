@@ -13,6 +13,9 @@ public class TurretController : MonoBehaviour
     private bool isDead;
     public bool isRanged;
 
+    public GameObject rangeIndicator;
+    private bool turretSelected;
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -48,6 +51,15 @@ public class TurretController : MonoBehaviour
 
     void Update()
     {
+        if(turretSelected == true)
+        {
+            rangeIndicator.SetActive(true);
+        }
+        else
+        {
+            rangeIndicator.SetActive(false);
+        }
+
         if (target == null)
         {
             return;
@@ -133,5 +145,17 @@ public class TurretController : MonoBehaviour
     {
         isDead = true;
         Destroy(gameObject);
+    }
+
+    private void OnMouseDown()
+    {
+        if (turretSelected == true)
+        {
+            turretSelected = false;
+        }
+        else
+        {
+            turretSelected = true;
+        }
     }
 }
