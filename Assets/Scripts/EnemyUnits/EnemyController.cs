@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     [Header("Unity Parameters")]
     public Image healthBar;
     private string turretTag = "Turret";
-
+  
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        if (nearestEnemy != null)
+        if (nearestEnemy != null && !goToObjective.canReachObjective)
         {
             target = nearestEnemy.transform;
             goToObjective.enabled = false;
@@ -67,7 +67,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        float distanceToEnemy = Vector3.Distance(transform.position, target.transform.position);
+        float distanceToEnemy = Vector3.Distance(transform.position, target.transform.GetChild(0).position);
         if (stats.attackReset <= 0f && distanceToEnemy <= stats.attackRange)
         {
             Attack();
@@ -96,7 +96,8 @@ public class EnemyController : MonoBehaviour
     {
         stats.health -= amount;
 
-        healthBar.fillAmount = stats.health / stats.startHealth;
+        float healthLeft = stats.health / stats.startHealth;
+        healthBar.fillAmount = healthLeft;
 
         if (stats.health <= 0 && !isDead)
         {
@@ -118,7 +119,10 @@ public class EnemyController : MonoBehaviour
 
     public void ObjectiveReached()
     {
-        PlayerStats.Lives--;
+        if(!GameManager.GameIsOver)
+        {
+            PlayerStats.Lives--;
+        }
         Destroy(gameObject);
     }
 

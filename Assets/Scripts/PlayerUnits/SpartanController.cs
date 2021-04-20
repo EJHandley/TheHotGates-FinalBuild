@@ -7,7 +7,7 @@ public class SpartanController : MonoBehaviour
     private int isTrue = 1;
 
     private int agogeDamageChange;
-    private int agogeHealthChange;
+    private float agogeHealthChange;
 
     private int forSpartaPassiveChange;
 

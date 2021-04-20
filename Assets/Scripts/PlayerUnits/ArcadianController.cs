@@ -7,7 +7,7 @@ public class ArcadianController : MonoBehaviour
 
     private int isTrue = 1;
 
-    private int arcadianHealthChange;
+    private float arcadianHealthChange;
     private int arcadianValueChange;
 
     private int wrathDamageChange;

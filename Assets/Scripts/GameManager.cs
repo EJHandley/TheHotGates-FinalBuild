@@ -33,8 +33,6 @@ public class GameManager : MonoBehaviour
 
     public void WinLevel()
     {
-        Debug.Log("WINNER WINNER CHICKEN DINNER");
-
         GameIsOver = true;
 
         winScreenUI.SetActive(true);

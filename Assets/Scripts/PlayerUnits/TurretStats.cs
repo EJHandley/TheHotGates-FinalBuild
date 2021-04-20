@@ -10,8 +10,8 @@ public class TurretStats
     public int purchaseValue;
     public int sellValue;
 
-    public int startHealth;
-    public int health;
+    public float startHealth;
+    public float health;
     public int damage;
     public GameObject impactEffect;
 

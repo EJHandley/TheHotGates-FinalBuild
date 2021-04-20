@@ -6,7 +6,7 @@ public class StoneWallController : MonoBehaviour
 
     private int isTrue = 1;
 
-    private int pozzolanicHealthChange;
+    private float pozzolanicHealthChange;
 
     private void Awake()
     {

@@ -4,9 +4,11 @@ using UnityEngine.AI;
 [RequireComponent(typeof(EnemyController))]
 public class EnemyNavigation : MonoBehaviour
 {
-    private EnemyController enemy;
     private NavMeshAgent agent;
+    private EnemyController enemy;
     private Transform target;
+
+    public bool canReachObjective;
 
     void Start()
     {
@@ -20,6 +22,14 @@ public class EnemyNavigation : MonoBehaviour
     {
         GoToObjective();
         agent.speed = enemy.stats.speed;
+
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(agent.destination, path);
+
+        if (path.status == NavMeshPathStatus.PathComplete)
+        {
+            canReachObjective = true;
+        }
     }
 
     void GoToObjective()

@@ -31,16 +31,13 @@ public class BuildManager : MonoBehaviour
     {
         if(PlayerStats.NormalCurrency < turretToBuild.purchaseValue)
         {
-            Debug.Log("YOU'RE POOR");
             return;
         }
 
         PlayerStats.NormalCurrency -= turretToBuild.purchaseValue;
 
-        GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
+        GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.Euler(0f, 180f, 0f));
         node.turret = turret;
-
-        Debug.Log("Turret Built - Money Left:" + PlayerStats.NormalCurrency);
     }
 
 }

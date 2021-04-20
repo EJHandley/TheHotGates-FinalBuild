@@ -9,8 +9,8 @@ public class EnemyStats
     public int normalValue;
     public int specialValue;
 
-    public int startHealth;
-    public int health;
+    public float startHealth;
+    public float health;
     public int damage;
 
     public float startSpeed;

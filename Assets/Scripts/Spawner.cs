@@ -35,6 +35,9 @@ public class Spawner : MonoBehaviour
 
     public void Update()
     {
+        if (GameManager.GameIsOver)
+            return;
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             waveSpawner.waveStartText.enabled = false;

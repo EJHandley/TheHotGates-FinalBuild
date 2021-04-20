@@ -8,12 +8,16 @@ public class TurretController : MonoBehaviour
 
     [Header("Unity Setup Fields")]
     public Image healthBar;
+    public GameObject healthBarUI;
     public string enemyTag = "Enemy";
 
     private bool isDead;
     public bool isRanged;
 
+    [Header("Other")]
     public GameObject rangeIndicator;
+    public GameObject attackPoint;
+
     private bool turretSelected;
 
     void Start()
@@ -134,6 +138,14 @@ public class TurretController : MonoBehaviour
     public void TakeDamage(int amount)
     {
         stats.health -= amount;
+
+        if(stats.health < stats.startHealth)
+        {
+            healthBarUI.SetActive(true);
+        }
+
+        float healthLeft = stats.health / stats.startHealth;
+        healthBar.fillAmount = healthLeft;
 
         if (stats.health <= 0 && !isDead)
         {

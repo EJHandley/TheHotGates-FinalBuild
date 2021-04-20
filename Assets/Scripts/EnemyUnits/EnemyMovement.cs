@@ -15,9 +15,11 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if(enemy.target != null)
+        agent.speed = enemy.stats.speed;
+
+        if (enemy.target != null)
         {
-            agent.SetDestination(enemy.target.position);
+            agent.SetDestination(enemy.target.GetChild(0).position);
         }
 
         NavMeshPath path = new NavMeshPath();
@@ -29,7 +31,5 @@ public class EnemyMovement : MonoBehaviour
         }
 
         Debug.Log(agent.pathStatus);
-
-        agent.speed = enemy.stats.speed;
     }
 }

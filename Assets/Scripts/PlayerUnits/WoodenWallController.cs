@@ -8,7 +8,7 @@ public class WoodenWallController : MonoBehaviour
 
     private int spikesDamageChange;
 
-    private int foloiHealthChange;
+    private float foloiHealthChange;
 
     private void Awake()
     {

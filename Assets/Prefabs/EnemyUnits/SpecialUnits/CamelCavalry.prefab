@@ -138,11 +138,13 @@ MonoBehaviour:
     startHealth: 0
     health: 0
     damage: 0
-    attackRange: 0
+    startSpeed: 0
+    speed: 0
+    attackRange: 7
     attackSpeed: 0
     attackReset: 0
     reachedObjective: 0
-  turretTag: Turret
+  target: {fileID: 0}
   healthBar: {fileID: 5770118422466803552}
 --- !u!1 &5944971321585287036
 GameObject:

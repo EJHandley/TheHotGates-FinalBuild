@@ -47,7 +47,6 @@ public class WaveSpawner : MonoBehaviour
 
     public void AllWavesCompleted()
     {
-        Debug.Log("ALL WAVES COMPLETE");
         gameManager.WinLevel();
     }
 
