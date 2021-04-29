@@ -6,10 +6,14 @@ public class CatapultController : MonoBehaviour
 
     private int isTrue = 1;
 
+    private int greekFireDamageChange;
     private float greekFireAOEChange;
 
     private int artilleryDamageChange;
     private float artilleryAOEChange;
+
+    private bool greekFireUpgradeApplied;
+    private bool artilleryUpgradeApplied;
 
     private void Awake()
     {
@@ -18,6 +22,7 @@ public class CatapultController : MonoBehaviour
 
     void Start()
     {
+        greekFireDamageChange = turret.stats.damage / 10;
         greekFireAOEChange = turret.stats.explosionRadius / 5;
 
         artilleryDamageChange = turret.stats.damage / 2;
@@ -26,6 +31,9 @@ public class CatapultController : MonoBehaviour
 
     void Update()
     {
+        if (greekFireUpgradeApplied || artilleryUpgradeApplied)
+            return;
+
         if (PlayerPrefs.GetInt("GreekFireActivated") == isTrue)
         {
             GreekFireUpgradeEnabled();
@@ -39,14 +47,18 @@ public class CatapultController : MonoBehaviour
 
     void GreekFireUpgradeEnabled()
     {
+        turret.stats.damage += greekFireDamageChange;
         turret.stats.explosionRadius += greekFireAOEChange;
-        //DO SOMETHING
+
+        greekFireUpgradeApplied = true;
     }
 
     void ArtilleryUpgradeEnabled()
     {
         turret.stats.damage += artilleryDamageChange;
         turret.stats.explosionRadius -= artilleryAOEChange;
+
+        artilleryUpgradeApplied = true;
     }
 
     void OnDrawGizmosSelected()

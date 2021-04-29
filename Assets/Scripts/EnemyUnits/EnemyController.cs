@@ -4,10 +4,31 @@ using UnityEngine.UI;
 public class EnemyController : MonoBehaviour
 {
     public EnemyStats stats;
+    public EnemyAura auras;
 
     public Transform target;
 
     private bool isDead;
+
+    #region Auras
+    [Header("Aura Bools")]
+    public bool isGeneral;
+    public bool Artapanus;
+    public bool Hydarnes;
+    public bool Mardonius;
+    public bool Xerxes;
+
+    [Header("Aura Changes")]
+    private int artapanusAuraChange;
+    private float hydarnesAuraChange;
+    public int xerxesAuraDmgChange;
+    public float xerxesAuraHthChange;
+
+    [Header("Aura Bools")]
+    public bool artapanusAuraApplied = false;
+    public bool hydarnesAuraApplied = false;
+    public bool xerxesAuraApplied = false;
+    #endregion
 
     private EnemyNavigation goToObjective;
     private EnemyMovement attackEnemies;
@@ -15,7 +36,7 @@ public class EnemyController : MonoBehaviour
     [Header("Unity Parameters")]
     public Image healthBar;
     private string turretTag = "Turret";
-  
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -23,6 +44,13 @@ public class EnemyController : MonoBehaviour
         goToObjective = GetComponent<EnemyNavigation>();
         attackEnemies = GetComponent<EnemyMovement>();
 
+        artapanusAuraChange = stats.startDamage / 10;
+        hydarnesAuraChange = stats.startHealth / 10;
+
+        xerxesAuraDmgChange = stats.startDamage / 5;
+        xerxesAuraHthChange = stats.startHealth / 5;
+
+        stats.damage = stats.startDamage;
         stats.health = stats.startHealth;
         stats.speed = stats.startSpeed;
     }
@@ -62,6 +90,12 @@ public class EnemyController : MonoBehaviour
     {
         PlayerStats.SpecialCurrency = PlayerPrefs.GetInt("SpecialCurrency");
 
+        if (isGeneral)
+        {
+            Debug.Log("IM A GENERAL");
+            Aura();
+        }
+
         if (target == null)
         {
             return;
@@ -75,6 +109,58 @@ public class EnemyController : MonoBehaviour
         }
 
         stats.attackReset -= Time.deltaTime;
+    }
+
+    void Aura()
+    {
+        if(Artapanus)
+        {
+            auras.ArtapanusAura();
+        }
+
+        if(Hydarnes)
+        {
+            auras.HydarnesAura();
+        }
+
+        if(Mardonius)
+        {
+            auras.MardoniusAura();
+        }
+
+        if(Xerxes)
+        {
+            Debug.Log("IM XERXES");
+            auras.XerxesAura();
+        }
+    }
+
+    public void BuffedByArtapanus()
+    {
+        stats.damage += artapanusAuraChange;
+        artapanusAuraApplied = true;
+    }   
+    
+    public void BuffedByHydarnes()
+    {
+        stats.health += hydarnesAuraChange;
+        hydarnesAuraApplied = true;
+    }
+
+    public void BuffedByXerxes()
+    {
+        stats.damage += xerxesAuraDmgChange;
+        stats.health += xerxesAuraHthChange;
+        Debug.Log("BUFFED");
+        xerxesAuraApplied = true;
+    }
+
+    void LockOnTarget()
+    {
+        Vector3 dir = (target.position - transform.position);
+        Quaternion aimRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(stats.rotationPoint.rotation, aimRotation, Time.deltaTime * stats.turnSpeed).eulerAngles;
+        stats.rotationPoint.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
     void Attack()

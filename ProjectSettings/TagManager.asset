@@ -8,6 +8,7 @@ TagManager:
   - Turret
   - SpawnPoint
   - Unreachable
+  - Coast
   layers:
   - Default
   - TransparentFX

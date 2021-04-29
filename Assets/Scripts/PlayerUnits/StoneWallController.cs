@@ -7,6 +7,7 @@ public class StoneWallController : MonoBehaviour
     private int isTrue = 1;
 
     private float pozzolanicHealthChange;
+    private bool pozzolanicUpgradeApplied = false;
 
     private void Awake()
     {
@@ -20,7 +21,7 @@ public class StoneWallController : MonoBehaviour
 
     void Update()
     {
-        if (PlayerPrefs.GetInt("PozzolanicActivated") == isTrue)
+        if (PlayerPrefs.GetInt("PozzolanicActivated") == isTrue && !pozzolanicUpgradeApplied)
         {
             PozzolanicUpgradeEnabled();
         }
@@ -34,10 +35,28 @@ public class StoneWallController : MonoBehaviour
     void PozzolanicUpgradeEnabled()
     {
         barricade.stats.startHealth += pozzolanicHealthChange;
+
+        pozzolanicUpgradeApplied = true;
     }
 
     void SappedUpgradeEnabled()
     {
+        if(barricade.isDead == true)
+        {
+            Explode();
+            Destroy(gameObject);
+        }
+    }
 
+    void Explode()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, barricade.stats.explosionRadius);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.tag == "Enemy")
+            {
+                barricade.Damage(collider.transform);
+            }
+        }
     }
 }

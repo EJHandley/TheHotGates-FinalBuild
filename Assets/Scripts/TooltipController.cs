@@ -9,7 +9,7 @@ public class TooltipController : MonoBehaviour
     public TMP_Text damageText;
     public TMP_Text healthText;
 
-    void Start()
+    void Update()
     {
         costText.text = ":" + " " + Mathf.Round(turret.stats.purchaseValue).ToString();
         damageText.text = ":" + " " + Mathf.Round(turret.stats.damage).ToString();

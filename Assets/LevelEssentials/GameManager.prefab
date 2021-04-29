@@ -75,13 +75,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8230083082454913078}
-  - component: {fileID: 8230083082454913068}
   - component: {fileID: 8230083082454913077}
   - component: {fileID: 8230083082454913079}
   - component: {fileID: 8230083082454913072}
   - component: {fileID: 8230083082454913073}
   - component: {fileID: 8230083082454913074}
   - component: {fileID: 8230083082454913075}
+  - component: {fileID: 3740303562136936444}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -104,18 +104,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8230083082454913068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8230083082454913076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50b4ada241ea763419ddbbe386655530, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8230083082454913077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,14 +129,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c591d1b5030a8459e90eddfb89a8cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arcadianPrefab: {fileID: 8794220866534920214, guid: 20d9866d7250d57408cb2a53302050b0, type: 3}
-  spartanPrefab: {fileID: 5344724215880064832, guid: b8d71537d819c8348bea2f012bf66495, type: 3}
-  archerPrefab: {fileID: 0}
-  ballistaPrefab: {fileID: 2000508401416910201, guid: a6ad1b5df634b8b4da7e33e00abdf576, type: 3}
-  catapultPrefab: {fileID: 7976947536571170392, guid: aebd8d2a97df7e241aee234636d39a4d, type: 3}
-  ditchPrefab: {fileID: 8605715629320717743, guid: 25cf9486c9d197b4290660de442eea67, type: 3}
-  woodenWallPrefab: {fileID: 0}
-  stoneWallPrefab: {fileID: 0}
+  turretSelected: 0
+  turretToBuild:
+    prefab: {fileID: 0}
+    preview: {fileID: 0}
+    buildSound: 
+    purchaseValue: 0
+    sellValue: 0
+    startHealth: 0
+    health: 0
+    startDamage: 0
+    damage: 0
+    impactEffect: {fileID: 0}
+    attackRange: 0
+    attackSpeed: 0
+    attackReset: 0
+    missilePrefab: {fileID: 0}
+    missileSpeed: 0
+    firePoint: {fileID: 0}
+    rotationPoint: {fileID: 0}
+    turnSpeed: 0
+    explosionRadius: 0
+    slowStrength: 0
+    slowRadius: 0
 --- !u!114 &8230083082454913072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,21 +164,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a919a00e7ce18f94c819783972948c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves:
-  - name: Wave 1
-    spawnRate: 2
-    enemies:
-    - enemy: {fileID: 641610197803363665, guid: 2fc475c0ed7f26745a3f79b2202da8b0, type: 3}
-      count: 5
-    - enemy: {fileID: 641610197803363665, guid: 6f703a4d08c8380428353238d24d453d, type: 3}
-      count: 2
-    - enemy: {fileID: 641610197803363665, guid: 1f80e84c0c9754349a1b9df6fd8d4f99, type: 3}
-      count: 1
-  spawnPoints:
-  - {fileID: 0}
-  timeBetweenWaves: 5
-  waveCountdown: 0
+  timeBetweenWaves: 15
+  waveCountdown: 15
   waveCountdownText: {fileID: 0}
+  waveStartText: {fileID: 0}
+  enemyCheck: 1
+  spawnerCheck: 1
   gameManager: {fileID: 8230083082454913074}
 --- !u!114 &8230083082454913073
 MonoBehaviour:
@@ -189,8 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92b7e15e25174d47881e0b0ff57b950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCurrency: 100
-  startLives: 5
+  startCurrency: 250
+  startLives: 10
   currencyCounterText: {fileID: 0}
   specialCurrencyCounterText: {fileID: 0}
   livesText: {fileID: 0}
@@ -221,3 +215,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 0}
+--- !u!114 &3740303562136936444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8230083082454913076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb4c15de54464245ab62eb2882a202b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

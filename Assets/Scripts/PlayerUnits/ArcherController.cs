@@ -12,6 +12,9 @@ public class ArcherController : MonoBehaviour
     private int peltastDamageChange;
     private float peltastRangeChange;
 
+    private bool skiritaiUpgradeApplied = false;
+    private bool peltastUpgradeApplied = false;
+
     private void Awake()
     {
         AudioManager.instance.Play(turret.stats.buildSound);
@@ -28,6 +31,9 @@ public class ArcherController : MonoBehaviour
 
     void Update()
     {
+        if (skiritaiUpgradeApplied || peltastUpgradeApplied)
+            return;
+
         if (PlayerPrefs.GetInt("SkiritaiActivated") == isTrue)
         {
             SkiritaiUpgradeEnabled();
@@ -39,21 +45,20 @@ public class ArcherController : MonoBehaviour
         }
     }
 
-    void ArcherPassive()
-    {
-
-    }
-
     void SkiritaiUpgradeEnabled()
     {
         turret.stats.damage += skiritaiDamageChange;
         turret.stats.attackRange += skiritaiRangeChange;
+
+        skiritaiUpgradeApplied = true;
     }
 
     void PeltastUpgradeEnabled()
     {
         turret.stats.damage += peltastDamageChange;
         turret.stats.attackRange -= peltastRangeChange;
+
+        peltastUpgradeApplied = true;
     }
 
     void OnDrawGizmosSelected()

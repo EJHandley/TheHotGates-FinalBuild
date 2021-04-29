@@ -10,6 +10,9 @@ public class WoodenWallController : MonoBehaviour
 
     private float foloiHealthChange;
 
+    private bool spikesUpgradeApplied = false;
+    private bool foloiUpgradeApplied = false;
+
     private void Awake()
     {
         AudioManager.instance.Play(barricade.stats.buildSound);
@@ -23,6 +26,9 @@ public class WoodenWallController : MonoBehaviour
 
     void Update()
     {
+        if (spikesUpgradeApplied || foloiUpgradeApplied)
+            return;
+
         if (PlayerPrefs.GetInt("SpikesActivated") == isTrue)
         {
             SpikesUpgradeEnabled();
@@ -37,10 +43,14 @@ public class WoodenWallController : MonoBehaviour
     void SpikesUpgradeEnabled()
     {
         barricade.stats.damage += spikesDamageChange;
+
+        spikesUpgradeApplied = true;
     }
 
     void FoloiUpgradeEnabled()
     {
         barricade.stats.startHealth += foloiHealthChange;
+
+        foloiUpgradeApplied = true;
     }
 }

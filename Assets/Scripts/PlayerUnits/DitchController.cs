@@ -3,13 +3,15 @@
 public class DitchController: MonoBehaviour
 {
     public TurretController barricade;
-    private EnemyController enemy;
 
     private int isTrue = 1;
 
     private float moatSlowChange;
 
     private int pitfallDamageChange;
+
+    private bool moatUpgradeApplied = false;
+    private bool pitfallUpgradeApplied = false;
 
     private void Awake()
     {
@@ -18,13 +20,15 @@ public class DitchController: MonoBehaviour
 
     void Start()
     {
-        enemy = GetComponent<EnemyController>();
         moatSlowChange = barricade.stats.slowStrength / 2;
         pitfallDamageChange = 10;
     }
 
     void Update()
     {
+        if (moatUpgradeApplied || pitfallUpgradeApplied)
+            return;
+
         if (PlayerPrefs.GetInt("MoatActivated") == isTrue)
         {
             MoatUpgradeEnabled();
@@ -63,11 +67,15 @@ public class DitchController: MonoBehaviour
     void MoatUpgradeEnabled()
     {
         barricade.stats.slowStrength += moatSlowChange;
+
+        moatUpgradeApplied = true;
     }
 
     void PitfallUpgradeEnabled()
     {
         barricade.stats.damage += pitfallDamageChange;
+
+        pitfallUpgradeApplied = true;
     }
 
     public void OnDrawGizmos()

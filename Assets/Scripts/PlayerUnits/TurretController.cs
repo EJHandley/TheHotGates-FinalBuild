@@ -11,8 +11,11 @@ public class TurretController : MonoBehaviour
     public GameObject healthBarUI;
     public string enemyTag = "Enemy";
 
-    private bool isDead;
+    [HideInInspector]
+    public bool isDead;
+
     public bool isRanged;
+    public bool isBarricade;
 
     [Header("Other")]
     public GameObject rangeIndicator;
@@ -25,6 +28,7 @@ public class TurretController : MonoBehaviour
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
 
         stats.health = stats.startHealth;
+        stats.damage = stats.startDamage;
     }
 
     void UpdateTarget()
@@ -55,13 +59,16 @@ public class TurretController : MonoBehaviour
 
     void Update()
     {
-        if(turretSelected == true)
+        if(!isBarricade)
         {
-            rangeIndicator.SetActive(true);
-        }
-        else
-        {
-            rangeIndicator.SetActive(false);
+            if(turretSelected == true)
+            {
+                rangeIndicator.SetActive(true);
+            }
+            else
+            {
+                rangeIndicator.SetActive(false);
+            }
         }
 
         if (target == null)
@@ -80,8 +87,8 @@ public class TurretController : MonoBehaviour
             {
                 Shoot();
             }
-            else
-            {
+            else if (!isBarricade)
+            { 
                 Attack();
             }
             
@@ -125,7 +132,7 @@ public class TurretController : MonoBehaviour
         Damage(target.transform);
     }
 
-    void Damage(Transform enemy)
+    public void Damage(Transform enemy)
     {
         EnemyController e = enemy.GetComponent<EnemyController>();
 
@@ -156,7 +163,11 @@ public class TurretController : MonoBehaviour
     void Die()
     {
         isDead = true;
-        Destroy(gameObject);
+
+        if (!isBarricade)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnMouseDown()

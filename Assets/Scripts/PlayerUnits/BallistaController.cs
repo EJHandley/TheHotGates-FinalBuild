@@ -9,6 +9,11 @@ public class BallistaController : MonoBehaviour
     private float springsRangeUpgrade;
     private float springsSpeedUpgrade;
 
+    private int barbDamageUpgrade;
+
+    private bool springsUpgradeApplied = false;
+    private bool barbUpgradeApplied = false;
+
     private void Awake()
     {
         AudioManager.instance.Play(turret.stats.buildSound);
@@ -18,10 +23,15 @@ public class BallistaController : MonoBehaviour
     {
         springsRangeUpgrade = turret.stats.attackRange / 5;
         springsSpeedUpgrade = turret.stats.attackSpeed / 5;
+
+        barbDamageUpgrade = turret.stats.startDamage / 2;
     }
 
     void Update()
     {
+        if (springsUpgradeApplied || barbUpgradeApplied)
+            return;
+
         if (PlayerPrefs.GetInt("SpringsActivated") == isTrue)
         {
             SpringsUpgradeEnabled();
@@ -29,7 +39,7 @@ public class BallistaController : MonoBehaviour
 
         if (PlayerPrefs.GetInt("JointActivated") == isTrue)
         {
-            JointUpgradeEnabled();
+            BarbUpgradeEnabled();
         }
     }
 
@@ -38,11 +48,15 @@ public class BallistaController : MonoBehaviour
     {
         turret.stats.attackRange += springsRangeUpgrade;
         turret.stats.attackSpeed += springsSpeedUpgrade;
+
+        springsUpgradeApplied = true;
     }
 
-    void JointUpgradeEnabled()
+    void BarbUpgradeEnabled()
     {
-        //DO SOMETHING
+        turret.stats.damage += barbDamageUpgrade;
+
+        barbUpgradeApplied = true;
     }
 
     void OnDrawGizmosSelected()

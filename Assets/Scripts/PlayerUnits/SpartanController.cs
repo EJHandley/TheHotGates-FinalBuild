@@ -6,10 +6,25 @@ public class SpartanController : MonoBehaviour
 
     private int isTrue = 1;
 
-    private int agogeDamageChange;
-    private float agogeHealthChange;
+    #region Auras
+    private int mardoniusSpartanDmgChange;
+    private float mardoniusSpartanHthChange;
 
-    private int forSpartaPassiveChange;
+    private int xerxesSpartanDmgChange;
+    private float xerxesSpartanHthChange;
+
+    public bool mardoniusAuraApplied = false;
+    public bool xerxesAuraApplied = false;
+    #endregion
+
+    private float agogeHealthChange;
+    private float agogeSpeedChange;
+
+    private int phalanxDamageChange;
+    private float phalanxRangeChange;
+
+    private bool agogeUpgradeApplied = false;
+    private bool phalanxUpgradeApplied = false;
 
     private void Awake()
     {
@@ -18,13 +33,24 @@ public class SpartanController : MonoBehaviour
 
     void Start()
     {
-        agogeDamageChange = turret.stats.damage / 5;
-        agogeHealthChange = turret.stats.health / 5;
+        mardoniusSpartanDmgChange = turret.stats.startDamage / 10;
+        mardoniusSpartanHthChange = turret.stats.startHealth / 10;
 
+        xerxesSpartanDmgChange = turret.stats.startDamage / 5;
+        xerxesSpartanHthChange = turret.stats.startHealth / 5;
+
+        agogeHealthChange = turret.stats.startHealth / 5;
+        agogeSpeedChange = turret.stats.attackSpeed;
+
+        phalanxDamageChange = turret.stats.startDamage / 5;
+        phalanxRangeChange = turret.stats.startHealth / 4;
     }
 
     void Update()
     {
+        if (agogeUpgradeApplied || phalanxUpgradeApplied)
+            return;
+
         if (PlayerPrefs.GetInt("AgogeActivated") == isTrue)
         {
             AgogeUpgradeEnabled();
@@ -32,24 +58,41 @@ public class SpartanController : MonoBehaviour
 
         if (PlayerPrefs.GetInt("ForSpartaActivated") == isTrue)
         {
-            ForSpartaUpgradeEnabled();
+            PhalanxUpgradeEnabled();
         }
-    }
-
-    void SpartanPassive()
-    {
-
     }
 
     void AgogeUpgradeEnabled()
     {
-        turret.stats.damage += agogeDamageChange;
         turret.stats.health += agogeHealthChange;
+        turret.stats.attackSpeed += agogeSpeedChange;
+
+        agogeUpgradeApplied = true;
     }
 
-    void ForSpartaUpgradeEnabled()
+    void PhalanxUpgradeEnabled()
     {
-        //DO SOMETHING
+        turret.stats.damage += phalanxDamageChange;
+        turret.stats.attackRange += phalanxRangeChange;
+
+        phalanxUpgradeApplied = true;
+    }
+
+    public void DebuffedByMardonius()
+    {
+        turret.stats.damage -= mardoniusSpartanDmgChange;
+        turret.stats.health -= mardoniusSpartanHthChange;
+
+        mardoniusAuraApplied = true;
+    }
+
+    public void DebuffedByXerxes()
+    {
+        Debug.Log("IVE BEEN DEBUFFED");
+        turret.stats.damage -= xerxesSpartanDmgChange;
+        turret.stats.health -= xerxesSpartanHthChange;
+
+        xerxesAuraApplied = true;
     }
 
     void OnDrawGizmosSelected()

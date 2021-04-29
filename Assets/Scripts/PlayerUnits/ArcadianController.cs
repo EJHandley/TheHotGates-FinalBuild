@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using TMPro;
 
 public class ArcadianController : MonoBehaviour
 {
@@ -7,11 +6,14 @@ public class ArcadianController : MonoBehaviour
 
     private int isTrue = 1;
 
-    private float arcadianHealthChange;
-    private int arcadianValueChange;
+    private float highlandHealthChange;
+    private int highlandValueChange;
 
     private int wrathDamageChange;
     private float wrathAttackSpeedChange;
+
+    private bool arcadianUpgradeApplied = false;
+    private bool wrathUpgradeApplied = false;
 
     private void Awake()
     {
@@ -20,15 +22,18 @@ public class ArcadianController : MonoBehaviour
 
     void Start()
     {
-        arcadianHealthChange = turret.stats.health / 10;
-        arcadianValueChange = turret.stats.purchaseValue / 2;
+        highlandHealthChange = turret.stats.startHealth / 5;
+        highlandValueChange = turret.stats.purchaseValue / 2;
 
-        wrathDamageChange = turret.stats.damage / 10;
+        wrathDamageChange = turret.stats.damage / 5;
         wrathAttackSpeedChange = turret.stats.attackSpeed;
     }
 
     void Update()
     {
+        if (arcadianUpgradeApplied || wrathUpgradeApplied)
+            return;
+
         if (PlayerPrefs.GetInt("ArcadianActivated") == isTrue)
         {
             ArcadianUpgradeEnabled();
@@ -40,21 +45,20 @@ public class ArcadianController : MonoBehaviour
         }
     }
 
-    void ArcadianPassive()
-    {
-        
-    }
-
     void ArcadianUpgradeEnabled()
     {
-        turret.stats.health += arcadianHealthChange;
-        turret.stats.purchaseValue += arcadianValueChange;
+        turret.stats.health += highlandHealthChange;
+        turret.stats.purchaseValue -= highlandValueChange;
+
+        arcadianUpgradeApplied = true;
     }
 
     void WrathUpgradeEnabled()
     {
         turret.stats.damage += wrathDamageChange;
         turret.stats.attackSpeed += wrathAttackSpeedChange;
+
+        wrathUpgradeApplied = true;
     }
 
     void OnDrawGizmosSelected()
