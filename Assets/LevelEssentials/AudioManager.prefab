@@ -51,6 +51,13 @@ MonoBehaviour:
     loop: 1
     mixer: {fileID: 24300002, guid: f2e95a008912df4448887be2cfd9fa6c, type: 2}
     source: {fileID: 0}
+  - name: LogoSound
+    clip: {fileID: 8300000, guid: 183a68c36f86f9f49a1782cd3252fb3a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 24300002, guid: f2e95a008912df4448887be2cfd9fa6c, type: 2}
+    source: {fileID: 0}
   - name: SpartanSpawn
     clip: {fileID: 8300000, guid: d650bed32d6a5ac44a9a660076950817, type: 3}
     volume: 1

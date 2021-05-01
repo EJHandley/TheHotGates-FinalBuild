@@ -5,11 +5,6 @@ public class EnemyAura : MonoBehaviour
     private string enemyTag = "Enemy";
     private string turretTag = "Turret";
 
-    private void Start()
-    {
-    
-    }
-
     public void ArtapanusAura()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);        
