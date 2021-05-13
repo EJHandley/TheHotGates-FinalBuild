@@ -32,6 +32,8 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplaySentence()
     {
+        dialogueText.text = " ";
+
         if (sentences.Count == 0)
             return;
 
@@ -47,7 +49,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds (0.1f);
+            yield return new WaitForSeconds (0.05f);
         }
     }
 }

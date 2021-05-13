@@ -22,10 +22,10 @@ public class CatapultController : MonoBehaviour
 
     void Start()
     {
-        greekFireDamageChange = turret.stats.damage / 10;
+        greekFireDamageChange = turret.stats.startDamage / 10;
         greekFireAOEChange = turret.stats.explosionRadius / 5;
 
-        artilleryDamageChange = turret.stats.damage / 2;
+        artilleryDamageChange = turret.stats.startDamage / 2;
         artilleryAOEChange = turret.stats.explosionRadius / 2;
     }
 

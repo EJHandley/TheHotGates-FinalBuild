@@ -22,6 +22,11 @@ public class EnemyNavigation : MonoBehaviour
     {
         GoToObjective();
         agent.speed = enemy.stats.speed;
+    }
+
+    void GoToObjective()
+    {
+        agent.SetDestination(target.position);
 
         NavMeshPath path = new NavMeshPath();
         agent.CalculatePath(agent.destination, path);
@@ -30,11 +35,10 @@ public class EnemyNavigation : MonoBehaviour
         {
             canReachObjective = true;
         }
-    }
-
-    void GoToObjective()
-    {
-        agent.SetDestination(target.position);
+        else if (path.status == NavMeshPathStatus.PathPartial)
+        {
+            canReachObjective = false;
+        }
 
         float distanceToObjective = Vector3.Distance(transform.position, target.position);
         if(distanceToObjective <= enemy.stats.reachedObjective)

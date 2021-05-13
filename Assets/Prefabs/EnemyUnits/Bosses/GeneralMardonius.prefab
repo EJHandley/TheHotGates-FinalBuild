@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 35884984998415600}
   - component: {fileID: 4422526540504661596}
   - component: {fileID: 3048144980593643711}
+  - component: {fileID: -433623947512039587}
+  - component: {fileID: -8759066046176392114}
   m_Layer: 0
   m_Name: GeneralMardonius
   m_TagString: Enemy
@@ -84,34 +86,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e04e11b4af6b9488b2506540de833c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 8230083082454913074, guid: a3c16a3aec074de4e91a6d2784bc7746, type: 3}
   stats:
     normalValue: 0
     specialValue: 0
-    startHealth: 0
-    health: 0
-    startDamage: 0
-    damage: 0
-    startSpeed: 0
+    startHealth: 250
+    health: 250
+    startDamage: 100
+    damage: 100
+    startSpeed: 5
     speed: 0
-    attackRange: 0
-    attackSpeed: 0
-    attackReset: 0
-    rotationPoint: {fileID: 0}
-    turnSpeed: 0
-    reachedObjective: 0
-  auras: {fileID: 0}
+    attackRange: 5
+    attackSpeed: 1
+    attackReset: 1
+    rotationPoint: {fileID: 641610197803363665}
+    turnSpeed: 1
+    reachedObjective: 5
+  auras: {fileID: 3740303562136936444, guid: a3c16a3aec074de4e91a6d2784bc7746, type: 3}
   target: {fileID: 0}
   isGeneral: 1
   Artapanus: 0
   Hydarnes: 0
   Mardonius: 1
   Xerxes: 0
-  xerxesAuraDmgChange: 0
-  xerxesAuraHthChange: 0
   artapanusAuraApplied: 0
   hydarnesAuraApplied: 0
   xerxesAuraApplied: 0
-  healthBar: {fileID: 5770118422466803552}
+  healthBar: {fileID: 3895880889829046373, guid: 92d317c90aeefee4d8a6903f95bd85c1, type: 3}
+--- !u!114 &-433623947512039587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293345233405819745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2388fb127fa2d46ade2935c1323ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canReachObjective: 0
+--- !u!114 &-8759066046176392114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293345233405819745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b83041df799e8143be624b6dda1b2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5944971321585287036
 GameObject:
   m_ObjectHideFlags: 0

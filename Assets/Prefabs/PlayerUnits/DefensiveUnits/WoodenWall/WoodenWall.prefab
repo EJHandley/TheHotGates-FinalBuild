@@ -65,13 +65,12 @@ MonoBehaviour:
   stats:
     prefab: {fileID: 1305410933538275515}
     preview: {fileID: 6434532589340027554, guid: 24f285adf095a2a419531e2648f19f1f, type: 3}
-    buildSound: 
+    buildSound: BuildNoise
     purchaseValue: 50
     sellValue: 0
     startHealth: 150
     health: 0
     startDamage: 0
-    damage: 0
     impactEffect: {fileID: 0}
     attackRange: 5
     attackSpeed: 1
@@ -93,6 +92,7 @@ MonoBehaviour:
   isBarricade: 1
   rangeIndicator: {fileID: 0}
   attackPoint: {fileID: 5032918641041338163}
+  damage: 11
 --- !u!208 &726736647009298145
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 4, y: 2.5, z: 0.5}
+  m_Extents: {x: 5.5, y: 2.5, z: 0.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -133,7 +133,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5032918641041338163}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05000305, y: -0.020005465, z: 1.01}
+  m_LocalPosition: {x: -0.08, y: -0.020005465, z: 1.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3170342451520014810}

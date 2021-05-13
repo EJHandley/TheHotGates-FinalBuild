@@ -259,9 +259,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 755778998792959984}
-  - component: {fileID: 5746205948682465512}
   - component: {fileID: -8665192341179956592}
-  - component: {fileID: 7916579004418974733}
+  - component: {fileID: 5746205948682465512}
   - component: {fileID: 2576581221665355492}
   - component: {fileID: 4894986890528457673}
   m_Layer: 0
@@ -292,19 +291,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5746205948682465512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263787879950419187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e933b6fb405713479c47382428a5a65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turret: {fileID: -8665192341179956592}
 --- !u!114 &-8665192341179956592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,13 +306,13 @@ MonoBehaviour:
   stats:
     prefab: {fileID: 263787879950419187}
     preview: {fileID: 469746600063508060, guid: 5697e52f1bd811c4c9e4512ba0ded3b2, type: 3}
-    buildSound: 
+    buildSound: SpawnNoise
     purchaseValue: 30
     sellValue: 0
     startHealth: 60
     health: 0
     startDamage: 20
-    damage: 0
+    damage: 20
     impactEffect: {fileID: 0}
     attackRange: 6
     attackSpeed: 1
@@ -348,7 +334,7 @@ MonoBehaviour:
   isBarricade: 0
   rangeIndicator: {fileID: 7402764579908423746}
   attackPoint: {fileID: 6597999364522000373}
---- !u!114 &7916579004418974733
+--- !u!114 &5746205948682465512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -357,14 +343,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 263787879950419187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b9f06cd899d4cb47956806a31471fe0, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e933b6fb405713479c47382428a5a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spartan: 0
-  infantry: 0
-  cavalry: 0
-  special: 0
-  miniBoss: 0
+  turret: {fileID: -8665192341179956592}
 --- !u!208 &2576581221665355492
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -375,7 +357,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 4, y: 2.5, z: 1}
+  m_Extents: {x: 5.5, y: 2.5, z: 1}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -418,7 +400,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6597999364522000373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.86, z: 1.32}
+  m_LocalPosition: {x: 0, y: 0.86, z: 1.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 755778998792959984}

@@ -64,13 +64,12 @@ MonoBehaviour:
   stats:
     prefab: {fileID: 538882208707272889}
     preview: {fileID: 22523545045079440, guid: 7d7c32b1a945ce140bed7796742b43db, type: 3}
-    buildSound: 
+    buildSound: BuildNoise
     purchaseValue: 25
     sellValue: 0
     startHealth: 5
     health: 0
     startDamage: 0
-    damage: 0
     impactEffect: {fileID: 0}
     attackRange: 1
     attackSpeed: 1
@@ -89,9 +88,10 @@ MonoBehaviour:
   enemyTag: Enemy
   isDead: 0
   isRanged: 0
-  isBarricade: 0
+  isBarricade: 1
   rangeIndicator: {fileID: 0}
   attackPoint: {fileID: 0}
+  damage: 0
 --- !u!136 &-7193841652500481133
 CapsuleCollider:
   m_ObjectHideFlags: 0

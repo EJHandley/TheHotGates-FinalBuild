@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public GameManager gameManager;
+    public AudioMixer audioMixer;
 
     public GameObject ui;
 
@@ -35,7 +38,12 @@ public class PauseMenu : MonoBehaviour
 
     public void Menu()
     {
-        SceneManager.LoadScene(0);
+        AudioManager.instance.StopPlaying(gameManager.soundtrack);
+        SceneManager.LoadScene(1);
     }
 
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("Volume", volume);
+    }
 }

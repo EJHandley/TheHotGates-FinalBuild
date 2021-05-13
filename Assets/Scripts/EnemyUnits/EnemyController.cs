@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
+    public GameManager gameManager;
+
     public EnemyStats stats;
     public EnemyAura auras;
 
@@ -21,12 +23,14 @@ public class EnemyController : MonoBehaviour
     [Header("Aura Changes")]
     private int artapanusAuraChange;
     private float hydarnesAuraChange;
-    public int xerxesAuraDmgChange;
-    public float xerxesAuraHthChange;
+    private int xerxesAuraDmgChange;
+    private float xerxesAuraHthChange;
 
-    [Header("Aura Bools")]
+    [HideInInspector]
     public bool artapanusAuraApplied = false;
+    [HideInInspector]
     public bool hydarnesAuraApplied = false;
+    [HideInInspector]
     public bool xerxesAuraApplied = false;
     #endregion
 
@@ -74,15 +78,11 @@ public class EnemyController : MonoBehaviour
         if (nearestEnemy != null && !goToObjective.canReachObjective)
         {
             target = nearestEnemy.transform;
-            goToObjective.enabled = false;
-            attackEnemies.enabled = true;
             return;
         }
         else
         {
             target = null;
-            attackEnemies.enabled = false;
-            goToObjective.enabled = true;
         }
     }
 
@@ -92,7 +92,6 @@ public class EnemyController : MonoBehaviour
 
         if (isGeneral)
         {
-            Debug.Log("IM A GENERAL");
             Aura();
         }
 
@@ -104,6 +103,7 @@ public class EnemyController : MonoBehaviour
         float distanceToEnemy = Vector3.Distance(transform.position, target.transform.GetChild(0).position);
         if (stats.attackReset <= 0f && distanceToEnemy <= stats.attackRange)
         {
+            LockOnTarget();
             Attack();
             stats.attackReset = 1f / stats.attackSpeed;
         }
@@ -130,7 +130,6 @@ public class EnemyController : MonoBehaviour
 
         if(Xerxes)
         {
-            Debug.Log("IM XERXES");
             auras.XerxesAura();
         }
     }
@@ -151,7 +150,6 @@ public class EnemyController : MonoBehaviour
     {
         stats.damage += xerxesAuraDmgChange;
         stats.health += xerxesAuraHthChange;
-        Debug.Log("BUFFED");
         xerxesAuraApplied = true;
     }
 
@@ -178,7 +176,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         stats.health -= amount;
 
@@ -199,6 +197,11 @@ public class EnemyController : MonoBehaviour
         PlayerStats.SpecialCurrency += stats.specialValue;
         PlayerPrefs.SetInt("SpecialCurrency", PlayerPrefs.GetInt("SpecialCurrency") + stats.specialValue);
         PlayerStats.EnemiesKilled++;
+
+        if (gameManager.isLevel4)
+        {
+            PlayerStats.FinalLevelScore++;
+        }
 
         Destroy(gameObject);
     }

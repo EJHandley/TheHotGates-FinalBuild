@@ -45,10 +45,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: MainTheme
+    clip: {fileID: 8300000, guid: 0b02ab062b16467478ca592e5a10cd3e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 24300002, guid: f2e95a008912df4448887be2cfd9fa6c, type: 2}
+    source: {fileID: 0}
+  - name: Level01Track
+    clip: {fileID: 8300000, guid: 292fb33a717da9d4fb282a6986b2d91a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 24300002, guid: f2e95a008912df4448887be2cfd9fa6c, type: 2}
+    source: {fileID: 0}
+  - name: Level02Track
+    clip: {fileID: 8300000, guid: f5c34dcef91ad10449f879a3e3affea4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 24300002, guid: f2e95a008912df4448887be2cfd9fa6c, type: 2}
+    source: {fileID: 0}
+  - name: Level03Track
+    clip: {fileID: 8300000, guid: fe12d7397be228a4d80fd18e8946cdde, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 24300002, guid: f2e95a008912df4448887be2cfd9fa6c, type: 2}
+    source: {fileID: 0}
+  - name: Level04Track
     clip: {fileID: 8300000, guid: 8dff7610ccbc7f243841e2dad7da99b4, type: 3}
     volume: 1
     pitch: 1
     loop: 1
+    mixer: {fileID: 24300002, guid: f2e95a008912df4448887be2cfd9fa6c, type: 2}
+    source: {fileID: 0}
+  - name: SpawnNoise
+    clip: {fileID: 8300000, guid: d650bed32d6a5ac44a9a660076950817, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 24300002, guid: f2e95a008912df4448887be2cfd9fa6c, type: 2}
+    source: {fileID: 0}
+  - name: BuildNoise
+    clip: {fileID: 8300000, guid: 7c84d968cc2b4f84e955a028a3212cd0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
     mixer: {fileID: 24300002, guid: f2e95a008912df4448887be2cfd9fa6c, type: 2}
     source: {fileID: 0}
   - name: LogoSound
@@ -58,8 +100,8 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: 24300002, guid: f2e95a008912df4448887be2cfd9fa6c, type: 2}
     source: {fileID: 0}
-  - name: SpartanSpawn
-    clip: {fileID: 8300000, guid: d650bed32d6a5ac44a9a660076950817, type: 3}
+  - name: TextSound
+    clip: {fileID: 8300000, guid: 8d58bfc666498cd4bb2c3915d1bd57e1, type: 3}
     volume: 1
     pitch: 1
     loop: 0

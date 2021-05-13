@@ -25,6 +25,7 @@ public class BallistaController : MonoBehaviour
         springsSpeedUpgrade = turret.stats.attackSpeed / 5;
 
         barbDamageUpgrade = turret.stats.startDamage / 2;
+        Debug.Log(barbDamageUpgrade);
     }
 
     void Update()
@@ -55,13 +56,7 @@ public class BallistaController : MonoBehaviour
     void BarbUpgradeEnabled()
     {
         turret.stats.damage += barbDamageUpgrade;
-
+        
         barbUpgradeApplied = true;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, turret.stats.attackRange);    
     }
 }

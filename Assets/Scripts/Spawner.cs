@@ -27,11 +27,13 @@ public class Spawner : MonoBehaviour
     public GameObject self;
 
     public Wave[] waves;
-    private int nextWave = 0;
+    [HideInInspector]
+    public int nextWave = 0;
 
     public float enemyCheck = 1f;
 
-    bool waveStarted = false;
+    [HideInInspector]
+    public bool waveStarted = false;
 
     public void Update()
     {
@@ -81,8 +83,6 @@ public class Spawner : MonoBehaviour
     {
         waveSpawner.waveCountdown = waveSpawner.timeBetweenWaves;
 
-        Debug.Log("Wave Completed!");
-
         state = SpawnState.COUNTING;
 
         if (nextWave + 1 > waves.Length - 1)
@@ -93,7 +93,7 @@ public class Spawner : MonoBehaviour
         else
         {
             nextWave++;
-            if(nextWave == 4 || nextWave == 7 || nextWave == 10)
+            if(nextWave == 3 || nextWave == 6 || nextWave == 9)
             {
                 waveStarted = false;
             }
@@ -102,7 +102,6 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnWave(Wave _wave)
     {
-        Debug.Log("SPAWNING WAVE");
         state = SpawnState.SPAWNING;
 
         for (int z = 0; z < _wave.enemies.Length; z++)
@@ -114,7 +113,6 @@ public class Spawner : MonoBehaviour
             }
         }
 
-        Debug.Log("FINISHED SPAWNING");
         state = SpawnState.WAITING;
 
         yield break;
@@ -122,7 +120,6 @@ public class Spawner : MonoBehaviour
 
     private void SpawnEnemy(Transform _enemy)
     {
-        Debug.Log("SPAWNING ENEMY");
         Instantiate(_enemy, transform.position, transform.rotation);
     }
 

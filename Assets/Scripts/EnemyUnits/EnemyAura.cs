@@ -11,7 +11,7 @@ public class EnemyAura : MonoBehaviour
         foreach (GameObject enemy in enemies)        
         {        
             EnemyController e = enemy.GetComponent<EnemyController>();            
-            if(e.artapanusAuraApplied)
+            if(e.artapanusAuraApplied == false)
             {
                 e.BuffedByArtapanus();
             }                
@@ -25,7 +25,7 @@ public class EnemyAura : MonoBehaviour
         foreach (GameObject enemy in enemies)        
         {        
             EnemyController e = enemy.GetComponent<EnemyController>();
-            if(e.hydarnesAuraApplied)
+            if(e.hydarnesAuraApplied == false)
             {
                 e.BuffedByHydarnes();
             }

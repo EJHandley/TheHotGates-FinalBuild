@@ -11,6 +11,7 @@ public class PlayerStats : MonoBehaviour
     public int startLives = 10;
 
     public static int EnemiesKilled;
+    public static int FinalLevelScore;
 
     public static int SpecialCurrency;
 

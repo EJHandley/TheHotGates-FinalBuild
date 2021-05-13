@@ -12,8 +12,10 @@ public class TurretStats
 
     public float startHealth;
     public float health;
+
     public int startDamage;
     public int damage;
+
     public GameObject impactEffect;
 
     [Header("For All Attacking Units")]

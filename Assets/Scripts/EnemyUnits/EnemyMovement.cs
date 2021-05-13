@@ -6,30 +6,22 @@ public class EnemyMovement : MonoBehaviour
 {
     private EnemyController enemy;
     private NavMeshAgent agent;
+    private EnemyNavigation nav;
 
     void Awake()
     {
         enemy = GetComponent<EnemyController>();
         agent = GetComponent<NavMeshAgent>();
+        nav = GetComponent<EnemyNavigation>();
     }
 
     private void Update()
     {
         agent.speed = enemy.stats.speed;
 
-        if (enemy.target != null)
+        if (enemy.target != null && nav.canReachObjective == false)
         {
             agent.SetDestination(enemy.target.GetChild(0).position);
         }
-
-        NavMeshPath path = new NavMeshPath();
-        agent.CalculatePath(agent.destination, path);
-
-        if(path.status == NavMeshPathStatus.PathPartial)
-        {
-            enemy.target.tag = "Unreachable";
-        }
-
-        Debug.Log(agent.pathStatus);
     }
 }

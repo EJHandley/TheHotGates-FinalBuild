@@ -6,8 +6,6 @@ public class BoltMissile : MonoBehaviour
 
     private Transform target;
 
-    private GameObject enemy;
-
     public void Seek(Transform _target)
     {
         target = _target;
@@ -15,8 +13,6 @@ public class BoltMissile : MonoBehaviour
 
     void Update()
     {
-        enemy = GameObject.FindGameObjectWithTag(ballista.turret.enemyTag);
-
         if (target == null)
         {
             Destroy(gameObject);
@@ -41,18 +37,8 @@ public class BoltMissile : MonoBehaviour
         Destroy(bloodSpatter, 2f);
 
         Destroy(gameObject);
-        Damage(target.transform);
+        ballista.turret.Damage(target.transform);
 
         return;
-    }
-
-    void Damage(Transform enemy)
-    {
-        EnemyController e = enemy.GetComponent<EnemyController>();
-
-        if (e != null)
-        {
-            e.TakeDamage(ballista.turret.stats.damage);
-        }
     }
 }

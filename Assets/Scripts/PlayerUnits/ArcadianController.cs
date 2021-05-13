@@ -25,7 +25,7 @@ public class ArcadianController : MonoBehaviour
         highlandHealthChange = turret.stats.startHealth / 5;
         highlandValueChange = turret.stats.purchaseValue / 2;
 
-        wrathDamageChange = turret.stats.damage / 5;
+        wrathDamageChange = turret.stats.startDamage / 5;
         wrathAttackSpeedChange = turret.stats.attackSpeed;
     }
 

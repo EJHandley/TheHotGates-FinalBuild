@@ -748,7 +748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8853912261177921369}
   m_Layer: 0
-  m_Name: PartToRotate
+  m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2120,7 +2120,7 @@ Transform:
   m_GameObject: {fileID: 7511850440971854773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -10, z: 0.054000854}
-  m_LocalScale: {x: 50, y: 10, z: 50}
+  m_LocalScale: {x: 35, y: 10, z: 35}
   m_Children: []
   m_Father: {fileID: 7211976440488437402}
   m_RootOrder: 3
@@ -2277,15 +2277,15 @@ MonoBehaviour:
   stats:
     prefab: {fileID: 7976947536571170392}
     preview: {fileID: 6936844167378680692, guid: 416bdea3f95878942b7ca70b6b521067, type: 3}
-    buildSound: 
-    purchaseValue: 100
+    buildSound: BuildNoise
+    purchaseValue: 200
     sellValue: 0
     startHealth: 50
     health: 0
-    startDamage: 0
-    damage: 200
-    impactEffect: {fileID: 0}
-    attackRange: 50
+    startDamage: 50
+    damage: 50
+    impactEffect: {fileID: 3166803634605946221, guid: 018b93611f6681549a2c1f6324f8f4c8, type: 3}
+    attackRange: 35
     attackSpeed: 0.25
     attackReset: 1
     missilePrefab: {fileID: 3089774221963112766, guid: a9e7ec55787943f4d9e29db7be16817b, type: 3}
@@ -2328,7 +2328,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 4, y: 2.5, z: 1.25}
+  m_Extents: {x: 5.5, y: 2.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1

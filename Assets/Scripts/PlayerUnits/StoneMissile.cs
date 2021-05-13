@@ -57,7 +57,7 @@ public class StoneMissile : MonoBehaviour
         {
             if(collider.tag == "Enemy")
             {
-                Damage(collider.transform);
+                catapult.turret.Damage(collider.transform);
             }
         }
     }

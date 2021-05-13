@@ -5,18 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class LevelComplete : MonoBehaviour
 {
-    public string nextLevel = "Level02";
-    public int levelToUnlock = 2;
+    public GameManager gameManager;
 
     public void Continue()
     {
-        Debug.Log("WINNER WINNER CHICKEN DINNER");
-        PlayerPrefs.SetInt("levelReached", levelToUnlock);
+        AudioManager.instance.StopPlaying(gameManager.soundtrack);
         SceneManager.LoadScene("LevelSelect");
     }
 
     public void Menu()
     {
+        AudioManager.instance.StopPlaying(gameManager.soundtrack);
         SceneManager.LoadScene("MainMenu");
     }
 

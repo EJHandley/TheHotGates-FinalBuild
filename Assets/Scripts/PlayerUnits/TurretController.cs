@@ -28,7 +28,9 @@ public class TurretController : MonoBehaviour
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
 
         stats.health = stats.startHealth;
+        Debug.Log("Health is " + stats.health);
         stats.damage = stats.startDamage;
+        Debug.Log("Dmg is " + stats.damage);
     }
 
     void UpdateTarget()
@@ -59,7 +61,7 @@ public class TurretController : MonoBehaviour
 
     void Update()
     {
-        if(!isBarricade)
+        if (!isBarricade)
         {
             if(turretSelected == true)
             {
@@ -87,7 +89,7 @@ public class TurretController : MonoBehaviour
             {
                 Shoot();
             }
-            else if (!isBarricade)
+            else
             { 
                 Attack();
             }
@@ -139,10 +141,11 @@ public class TurretController : MonoBehaviour
         if (e != null)
         {
             e.TakeDamage(stats.damage);
+            Debug.Log("DAMAGE " + stats.damage);
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         stats.health -= amount;
 
@@ -163,22 +166,22 @@ public class TurretController : MonoBehaviour
     void Die()
     {
         isDead = true;
-
-        if (!isBarricade)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
-    private void OnMouseDown()
+    private void OnMouseEnter()
     {
-        if (turretSelected == true)
-        {
-            turretSelected = false;
-        }
-        else
-        {
-            turretSelected = true;
-        }
+        turretSelected = true;
+    }
+
+    private void OnMouseExit()
+    {
+        turretSelected = false;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, stats.attackRange);
     }
 }

@@ -15,6 +15,8 @@ public class Node : MonoBehaviour
     public GameObject turretPreview;
     public bool turretPreviewed;
 
+    public string nodeTag;
+
     public Vector3 positionOffset;
 
     BuildManager buildManager;
@@ -44,6 +46,12 @@ public class Node : MonoBehaviour
             return;
 
         buildManager.BuildTurretOn(this);
+
+        if(tag == "Unreachable")
+        {
+            turret.tag = tag;
+        }
+
     }
 
     void OnMouseOver()

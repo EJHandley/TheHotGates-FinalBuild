@@ -41,7 +41,7 @@ public class ArrowMissile : MonoBehaviour
         Destroy(bloodSpatter, 2f);
 
         Destroy(gameObject);
-        Damage(target.transform);
+        archer.turret.Damage(target.transform);
 
         return;
     }

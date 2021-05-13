@@ -22,10 +22,10 @@ public class ArcherController : MonoBehaviour
 
     void Start()
     {
-        skiritaiDamageChange = turret.stats.damage / 5;
+        skiritaiDamageChange = turret.stats.startDamage / 5;
         skiritaiRangeChange = turret.stats.attackRange / 5;
 
-        peltastDamageChange = turret.stats.damage / 2;
+        peltastDamageChange = turret.stats.startDamage / 2;
         peltastRangeChange = turret.stats.attackRange / 5;
     }
 

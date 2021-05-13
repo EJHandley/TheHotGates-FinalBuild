@@ -345,13 +345,12 @@ MonoBehaviour:
   stats:
     prefab: {fileID: 5545713407732873589}
     preview: {fileID: 5154117741692842441, guid: 086575149906aef4994b3ae19004f4e8, type: 3}
-    buildSound: 
+    buildSound: BuildNoise
     purchaseValue: 100
     sellValue: 0
     startHealth: 400
     health: 0
-    startDamage: 50
-    damage: 0
+    startDamage: 5
     impactEffect: {fileID: 0}
     attackRange: 5
     attackSpeed: 1
@@ -373,6 +372,7 @@ MonoBehaviour:
   isBarricade: 1
   rangeIndicator: {fileID: 0}
   attackPoint: {fileID: 4136243051768145985}
+  damage: 0
 --- !u!208 &6046076177749724637
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 4, y: 2.5, z: 0.5}
+  m_Extents: {x: 5.5, y: 2.5, z: 0.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1

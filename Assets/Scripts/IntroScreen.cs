@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class IntroScreen : MonoBehaviour
 {
-    public AudioManager audioManager;
-
     [Header("LogoScreen")]
     public Animator logoFly;
     public Animator logoFadeIn;
@@ -73,7 +71,7 @@ public class IntroScreen : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        audioManager.Play("LogoSound");
+        AudioManager.instance.Play("LogoSound");
 
         yield return new WaitForSeconds(1f);
 
@@ -92,40 +90,60 @@ public class IntroScreen : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        AudioManager.instance.Play("TextSound");
         DialogueTrigger trigger = speechBubble1Dialogue.GetComponent<DialogueTrigger>();
         trigger.TriggerDialogue();
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
+
+        AudioManager.instance.StopPlaying("TextSound");
+
+        yield return null;
 
         speechBubble2.enabled = true;
         speechBubble2.Play("SpeechBubble2");
 
         yield return new WaitForSeconds(1f);
 
+        AudioManager.instance.Play("TextSound");
         DialogueTrigger trigger1 = speechBubble2Dialogue.GetComponent<DialogueTrigger>();
         trigger1.TriggerDialogue();
 
-        yield return new WaitForSeconds(6.5f);
+        yield return new WaitForSeconds(4f);
+
+        AudioManager.instance.StopPlaying("TextSound");
+
+        yield return null;
 
         speechBubble3.enabled = true;
         speechBubble3.Play("SpeechBubble3");
 
         yield return new WaitForSeconds(1f);
 
+        AudioManager.instance.Play("TextSound");
         DialogueTrigger trigger2 = speechBubble3Dialogue.GetComponent<DialogueTrigger>();
         trigger2.TriggerDialogue();
 
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(3f);
+
+        AudioManager.instance.StopPlaying("TextSound");
+
+        yield return null;
 
         speechBubble4.enabled = true;
         speechBubble4.Play("SpeechBubble4");
 
         yield return new WaitForSeconds(1f);
 
+        AudioManager.instance.Play("TextSound");
         DialogueTrigger trigger3 = speechBubble4Dialogue.GetComponent<DialogueTrigger>();
         trigger3.TriggerDialogue();
 
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(4f);
+
+        AudioManager.instance.StopPlaying("TextSound");
+
+        yield return new WaitForSeconds(4f);
 
         narrativeFadeOut.enabled = true;
         narrativeFadeOut.Play("NarrativeFadeOut");
@@ -134,6 +152,8 @@ public class IntroScreen : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        AudioManager.instance.Play("MainTheme");
+        AudioManager.instance.mainThemePlaying = true;
         titleModelFadeIn.enabled = true;
         titleModelFadeIn.Play("TitleModelFadeIn");
 
@@ -141,7 +161,6 @@ public class IntroScreen : MonoBehaviour
 
         spearFly.enabled = true;
         spearFly.Play("SpearFly");
-        audioManager.Play("MainTheme");
 
         yield return new WaitForSeconds(1f);
 

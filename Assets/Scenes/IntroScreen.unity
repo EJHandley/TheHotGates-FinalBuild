@@ -388,17 +388,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62036830}
   m_CullTransparentMesh: 0
---- !u!114 &119745867 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3822238423724871914, guid: c04682c72d69d794295cc50860844476, type: 3}
-  m_PrefabInstance: {fileID: 4967285765909236668}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c7c9a65b5d8ee24685539aa43dfcbde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &260778492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921e7291b99d4cf40ab9dafea82ebe3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioManager: {fileID: 119745867}
   logoFly: {fileID: 287258525}
   logoFadeIn: {fileID: 2009517133}
   logoFadeOut: {fileID: 1429460687}
@@ -2258,7 +2246,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 3b02fcc63207fc94bb2768f00baf2522, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c05be8c7517a73a4e8a1e0a362fb1747, type: 2}
+      objectReference: {fileID: 2100000, guid: 05b0e9a8bb980954fa0f55e07d162b40, type: 2}
     - target: {fileID: 919132149155446097, guid: 3b02fcc63207fc94bb2768f00baf2522, type: 3}
       propertyPath: m_Name
       value: TitleModel

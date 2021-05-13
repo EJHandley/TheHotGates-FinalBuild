@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
 
     public static AudioManager instance;
+    public bool mainThemePlaying;
 
     void Awake()
     {
@@ -55,6 +56,18 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
 
+    }
+
+    public void StopPlaying(string sound)
+    {
+        Sound s = Array.Find(sounds, item => item.name == sound);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        s.source.Stop();
     }
 
     public void Play(string name)
